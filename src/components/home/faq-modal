@@ -1,0 +1,30 @@
+import React, {useEffect, useRef} from "react";
+
+function FAQModal ({
+  setModalOpen,
+}) {
+  
+  const dropdownRef = useRef();
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setModalOpen(false);
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [setModalOpen]);
+  
+  return (
+    <div className="absolute w-[40%] bg-white rounded-md border border-gray-200 shadow-lg z-50 py-2 px-3 text-sm"  ref={dropdownRef}>
+      qrwer
+    </div>
+  )
+}
+
+export default FAQModal;
