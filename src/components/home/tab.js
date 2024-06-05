@@ -2,7 +2,7 @@ function Tab ({
     selectedTab,
     setSelectedTab,
 }) {
-  const tabs = ["FAQs", "Accounts"];
+  const tabs = ["Knowledge Base", "Query Classifier", "Accounts"];
 
   const handleSelectTab = (clickedTab) => {
     setSelectedTab(clickedTab);

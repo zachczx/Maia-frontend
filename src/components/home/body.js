@@ -7,7 +7,7 @@ function Body () {
   return (
     <div>
       <Tab selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
-      {selectedTab === "FAQs" && (<FAQTab />)}
+      {selectedTab === "Knowledge Base" && (<FAQTab />)}
     </div>
   )
 }

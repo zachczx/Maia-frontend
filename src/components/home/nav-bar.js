@@ -7,7 +7,7 @@ function NavBar () {
       <div className="flex flex-row gap-x-2">
         <TbMessageCircleQuestion size={25} color="white" />
         <div className="font-semibold text-white">
-            Chat Bot Management System
+            Call Center System
         </div>
       </div>
       <Profile />
