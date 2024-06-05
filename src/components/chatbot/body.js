@@ -30,7 +30,7 @@ function Body () {
   return (
     <div className="bg-white rounded-lg w-full h-full">
       <MessageHistory messages={messages} timestamp={timestamp} />
-      <InputBar setMessages={setMessages} />
+      <InputBar messages={messages} setMessages={setMessages} />
     </div>
   )
 }
