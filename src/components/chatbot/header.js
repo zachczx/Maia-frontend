@@ -5,7 +5,7 @@ function Header ({
     setChatWindowOpen
 }) {
     return (
-        <div className="w-full h-content p-2 flex flex-row justify-between mb-2">
+        <div className="w-full h-12 p-2 flex flex-row justify-between mb-2">
           <div className="flex items-center flex-row gap-2">
             <TbMessageCircleQuestion size={25} color="white" />
              <div>

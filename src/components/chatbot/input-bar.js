@@ -1,11 +1,15 @@
 import React, { useEffect, useState} from "react";
 import { IoMdSend } from "react-icons/io";
+import { useDispatch } from 'react-redux';
+import { addMessage } from '../../features/chatHistorySlice'; 
 
 function InputBar ({
   messages,
   setMessages,
 }) {
   const [inputValue, setInputValue] = useState("");
+  const [isFetchingData, setIsFetchingData] = useState(false);
+  const dispatch = useDispatch();
 
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
@@ -42,25 +46,32 @@ function InputBar ({
     const getChatResponse = async () => {
       //get response
       const response = await fetchData()
-      
+
       //append response
+      const message = {content: response, role: "agent"}
       setMessages(prevMessages => [
         ...prevMessages,
-        {content: response, role: "agent"}
+        message
       ]);
+      dispatch(addMessage(message))
+
+      setIsFetchingData(false);
     }
 
     if (messages.length%2 === 0 && messages.length !== 0){
       getChatResponse()
     }
-  }, [messages, setMessages])
+  }, [messages, setMessages, dispatch])
   
 
   const handleQuerySubmit = () => {
+    const clientInput = {content: inputValue, role: "client"}
+    setIsFetchingData(true);
     setMessages(prevMessages => [
       ...prevMessages,
-      {content: inputValue, role: "client"}
+      clientInput
     ]); 
+    dispatch(addMessage(clientInput))
     setInputValue("");
   };
 
@@ -73,6 +84,7 @@ function InputBar ({
         onChange={(e) => setInputValue(e.target.value)}
         placeholder="Type your question here"
         value={inputValue}
+        disabled={isFetchingData}
       />
       <button className="self-center px-2" onClick={handleQuerySubmit}>
         <IoMdSend size={20}/>

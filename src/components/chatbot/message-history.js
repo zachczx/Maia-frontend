@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect,useRef } from "react";
 import AgentMessage from "@/components/chatbot/agent-message";
 import ClientMessage from "@/components/chatbot/client-message";
 
@@ -6,8 +6,17 @@ function MessageHistory ({
     messages,
     timestamp,
 }) {
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    if (containerRef.current) {
+      // Scroll to the bottom of the container
+      const { current } = containerRef;
+      current.scrollTop = current.scrollHeight;
+    }
+  }, [messages])
   return (
-    <div className="h-[80%] p-3 overflow-y-auto">
+    <div className="h-[80%] p-3 overflow-y-auto" ref={containerRef}>
       <div className="text-xs flex justify-center pb-2">{ timestamp }</div>
       <div className="flex flex-col gap-y-2">
         {messages.map((message, index) => (
