@@ -31,24 +31,24 @@ function Body () {
 
   useEffect(() => {
     console.log('Full state check:', chatMessages);
-  if (chatMessages.length === 0) {
-    const defaultFirstMessage = {role: "agent", content: "Hello! How can I assist you with your current task?"};
-    const tempTimestamp = getTimestamp();
+    if (chatMessages.length === 0) {
+      const defaultFirstMessage = {role: "agent", content: "Hello! How can I assist you with your current task?"};
+      const tempTimestamp = getTimestamp();
 
-    // Dispatching and setting local state
-    dispatch(addMessage(defaultFirstMessage));
-    dispatch(addTimeStamp(tempTimestamp));
+      // Dispatching and setting local state
+      dispatch(addMessage(defaultFirstMessage));
+      dispatch(addTimeStamp(tempTimestamp));
 
-    // Update local component state after dispatch
-    setTimeout(() => {
-      setMessages([defaultFirstMessage]);
-      setTimestamp(tempTimestamp);
-      console.log('Updated state after delay:', chatMessages);
-    }, 2000); // A short timeout can ensure the log runs after state updates
-  } else {
-    setMessages(chatMessages); 
-    setTimestamp(timestampHistory);
-  }
+      // Update local component state after dispatch
+      setTimeout(() => {
+        setMessages([defaultFirstMessage]);
+        setTimestamp(tempTimestamp);
+        console.log('Updated state after delay:', chatMessages);
+      }, 2000); // A short timeout can ensure the log runs after state updates
+    } else {
+      setMessages(chatMessages); 
+      setTimestamp(timestampHistory);
+    }
   }, [dispatch, chatMessages, timestampHistory])
 
   return (

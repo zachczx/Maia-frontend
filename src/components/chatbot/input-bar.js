@@ -23,7 +23,6 @@ function InputBar ({
       const data = {
         chat_history: messages
       };
-      console.log(data)
       return fetch(url, {
           method: 'POST',
           headers: {

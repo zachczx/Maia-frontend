@@ -1,13 +1,17 @@
 import React, {useState} from "react";
 import Tab from "@/components/home/tab";
-import FAQTab from "@/components/home/faq-tab";
+import KBTab from "@/components/home/kb-tab";
+import ClassifierTab from "@/components/home/classifier-tab";
+import AssistantTab from "@/components/home/assistant-tab";
 
 function Body () {
-  const [selectedTab, setSelectedTab] = useState("FAQs");
+  const [selectedTab, setSelectedTab] = useState("Call Assistant");
   return (
     <div>
       <Tab selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
-      {selectedTab === "Knowledge Base" && (<FAQTab />)}
+      {selectedTab === "Knowledge Base" && (<KBTab />)}
+      {selectedTab === "Query Classifier" && (<ClassifierTab />)}
+      {selectedTab === "Call Assistant" && (<AssistantTab />)}
     </div>
   )
 }
