@@ -56,6 +56,7 @@ function ClassifierTab() {
             console.log(data);
             setData(data);
             setFetchedData(true)
+            setLoading(false);
         }
     })
     .catch((error) => {
@@ -68,7 +69,6 @@ function ClassifierTab() {
     setLoading(true);
     console.log(loading)
     fetchData();
-    setLoading(false);
   }
 
   return (
@@ -97,7 +97,7 @@ function ClassifierTab() {
           >
             {loading ? (
               <TailSpin
-                visible={loading}
+                visible={true}
                 height="20"
                 width="20"
                 color="#fff"

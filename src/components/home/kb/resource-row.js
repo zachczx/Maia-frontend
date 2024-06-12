@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import { FaRegTrashCan } from "react-icons/fa6";
 import { FaRegEdit } from "react-icons/fa";
-import DeleteModal from "@/components/home/delete-modal";
-import EditModal from "@/components/home/edit-modal";
+import DeleteModal from "@/components/home/kb/delete-modal";
+import EditModal from "@/components/home/kb/edit-modal";
 
 function ResourceRow ({
   index,

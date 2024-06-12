@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import ResourceRow from "@/components/home/resource-row";
+import ResourceRow from "@/components/home/kb/resource-row";
 import { MdAddCircle } from "react-icons/md";
 
 function KBTab () {
