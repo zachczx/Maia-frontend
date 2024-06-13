@@ -82,6 +82,10 @@ function EditModal({
     <div className="inset-0 fixed w-screen h-screen z-50 flex justify-center items-center">
       <div ref={modalRef} className="absolute bg-white rounded-md border border-gray-200 shadow-lg z-50 w-96 h-fit p-5 text-sm">
         <div>
+          <div className="pb-2">
+            <p className="font-semibold text-base">Edit Knowledge Base Resource</p>
+            <p className="text-xs">Revise the details as needed</p>
+          </div>
           {headers.map((header, index) => (
             <div className="grid grid-cols-3 mb-3" key={index}>
               <p>{header}</p>

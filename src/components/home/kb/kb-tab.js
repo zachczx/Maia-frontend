@@ -1,10 +1,12 @@
 import React, {useEffect, useState} from "react";
 import ResourceRow from "@/components/home/kb/resource-row";
 import { MdAddCircle } from "react-icons/md";
+import AddModal from "@/components/home/kb/add-modal";
 
 function KBTab () {
   const headers = ["Name", "Category", "Sub Category", "Created at", "Last Updated"];
   const [resources, setResources] = useState([]);
+  const [addModalOpen, setAddModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchData = () => {
@@ -25,6 +27,10 @@ function KBTab () {
     fetchData();
   }, [])
 
+  const handleAddModalOpen = () => {
+    setAddModalOpen(!addModalOpen);
+  };
+
   return (
     <div className="w-full pt-4">
       <div className="px-5 grid grid-cols-7 text-sm border-b-2 border-gray-200 text-gray-500">
@@ -34,7 +40,10 @@ function KBTab () {
           </div> 
         ))}
         <div className="pt-2">
-          <button className="text-sm bg-accent text-white px-3 py-1.5 rounded-lg flex flex-row gap-2">
+          <button 
+            className="text-sm bg-accent text-white px-3 py-1.5 rounded-lg flex flex-row gap-2"
+            onClick={handleAddModalOpen}
+          >
             <MdAddCircle size={20}/>
             <span>Add Resource</span>
           </button>
@@ -50,6 +59,10 @@ function KBTab () {
           />
         ))}
       </div>
+
+      {addModalOpen && (
+        <AddModal setAddModalOpen={setAddModalOpen} />
+      )}
     </div>
   )
 }
