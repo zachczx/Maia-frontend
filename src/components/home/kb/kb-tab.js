@@ -7,6 +7,7 @@ function KBTab () {
   const headers = ["Name", "Category", "Sub Category", "Created at", "Last Updated"];
   const [resources, setResources] = useState([]);
   const [addModalOpen, setAddModalOpen] = useState(false);
+  const [rerender, setRerender] = useState(false);
 
   useEffect(() => {
     const fetchData = () => {
@@ -18,14 +19,16 @@ function KBTab () {
       .then(data => {
           if (data.data) {
             setResources(Array.from(data.data));
+            setRerender(false);
           }
       })
       .catch((error) => {
-          console.log(error)
+          console.log(error);
+          setRerender(false);
       });
     }
     fetchData();
-  }, [])
+  }, [rerender])
 
   const handleAddModalOpen = () => {
     setAddModalOpen(!addModalOpen);
@@ -56,12 +59,16 @@ function KBTab () {
             key={index} 
             index={index}
             resource={resource}
+            setRerender={setRerender}
           />
         ))}
       </div>
 
       {addModalOpen && (
-        <AddModal setAddModalOpen={setAddModalOpen} />
+        <AddModal 
+          setAddModalOpen={setAddModalOpen}
+          setRerender={setRerender} 
+        />
       )}
     </div>
   )

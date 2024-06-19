@@ -1,11 +1,14 @@
-import React, {useRef, useEffect} from "react";
+import React, {useRef, useEffect, useState} from "react";
+import { TailSpin } from "react-loader-spinner";
 
 function DeleteModal({
   setDeleteModalOpen,
   name,
   id,
+  setRerender,
 }){
   const modalRef = useRef();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -29,13 +32,16 @@ function DeleteModal({
           'Content-Type': 'application/json'
         },
     })
-    .then(response => response.json())
-    .then(data => {
-        if (data.response) {
-            console.log(data.response);
-            return data.response;
-        }
+    .then(response => {
+      if (response.status === 204) {
+        setRerender(true);
+        setDeleteModalOpen(false);
+        setLoading(false);
+        return null;
+      }
+      return response.json();
     })
+    .then(data =>{})
     .catch((error) => {
         console.log(error)
         return "An error has occurred";
@@ -47,7 +53,7 @@ function DeleteModal({
   }
 
   const handleConfirm = () => {
-    setDeleteModalOpen(false);
+    setLoading(true);
     deleteResource()
   }
 
@@ -62,11 +68,30 @@ function DeleteModal({
           from the Knowledge Base?
         </div>
         <div className="flex flex-rows gap-3 justify-between mx-8">
-          <button className="px-2 py-1.5 rounded-lg text-sm border border-2 border-accent" onClick={handleCancel}>
+        <button 
+            className={`${loading ? "hidden": "px-2 py-1.5 rounded-lg text-sm border border-2 border-accent"}`} 
+            onClick={handleCancel}
+          >
             Cancel
           </button>
-          <button className="px-2 py-1.5 rounded-lg text-sm bg-accent text-white" onClick={handleConfirm}>
-            Confirm
+          <button 
+            className={`px-2 py-1.5 rounded-lg text-sm bg-accent text-white ${loading ? "mx-auto": ""}`} 
+            disabled={loading} 
+            onClick={handleConfirm}
+          >
+            {loading ? 
+                <TailSpin
+                visible={true}
+                height="20"
+                width="20"
+                color="#fff"
+                ariaLabel="tail-spin-loading"
+                radius="1"
+                wrapperStyle={{}}
+                wrapperClass=""
+              />
+              : <span>Confirm</span>
+              }
           </button>
         </div>
       </div>

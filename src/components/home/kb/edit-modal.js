@@ -1,11 +1,14 @@
 import React, {useRef, useEffect, useState} from "react";
+import { TailSpin } from "react-loader-spinner";
 
 function EditModal({
   setEditModalOpen,
   resource,
+  setRerender,
 }){
   const modalRef = useRef();
   const headers = ["Name", "Category", "Sub Category", "Tag"];
+  const [loading, setLoading] = useState(false);
   const [currValues, setCurrValues] = useState({
     "name": resource.name,
     "category": resource.category,
@@ -35,7 +38,6 @@ function EditModal({
       }
     }
 
-    console.log(currValues);
     return fetch(url, {
         method: 'PUT',
         headers: {
@@ -45,8 +47,10 @@ function EditModal({
     })
     .then(response => response.json())
     .then(data => {
-        if (data.response) {
-            console.log(data.response);
+        if (data) {
+            setRerender(true);
+            setEditModalOpen(false);
+            setLoading(false);
             return data.response;
         }
     })
@@ -61,8 +65,8 @@ function EditModal({
   }
 
   const handleConfirm = () => {
-    setEditModalOpen(false);
-    resource = updateResource()
+    setLoading(true);
+    resource = updateResource();
   }
 
   useEffect(() => {
@@ -100,11 +104,30 @@ function EditModal({
           ))}
         </div>
         <div className="flex flex-rows gap-3 justify-between mt-8 mx-16">
-          <button className="px-2 py-1.5 rounded-lg text-sm border border-2 border-accent" onClick={handleCancel}>
+          <button 
+            className={`${loading ? "hidden": "px-2 py-1.5 rounded-lg text-sm border border-2 border-accent"}`} 
+            onClick={handleCancel}
+          >
             Cancel
           </button>
-          <button className="px-2 py-1.5 rounded-lg text-sm bg-accent text-white" onClick={handleConfirm}>
-            Confirm
+          <button 
+            className={`px-2 py-1.5 rounded-lg text-sm bg-accent text-white ${loading ? "mx-auto": ""}`} 
+            disabled={loading} 
+            onClick={handleConfirm}
+          >
+            {loading ? 
+                <TailSpin
+                visible={true}
+                height="20"
+                width="20"
+                color="#fff"
+                ariaLabel="tail-spin-loading"
+                radius="1"
+                wrapperStyle={{}}
+                wrapperClass=""
+              />
+              : <span>Confirm</span>
+              }
           </button>
         </div>
       </div>

@@ -6,7 +6,8 @@ import EditModal from "@/components/home/kb/edit-modal";
 
 function ResourceRow ({
   index,
-  resource
+  resource,
+  setRerender,
 }) {
   const [showButtons, setShowButtons] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
@@ -47,10 +48,19 @@ function ResourceRow ({
         </div>
       </div>
       {editModalOpen && (
-        <EditModal setEditModalOpen={setEditModalOpen} resource={resource}  />
+        <EditModal 
+          setEditModalOpen={setEditModalOpen} 
+          resource={resource}
+          setRerender={setRerender}
+        />
       )}
       {deleteModalOpen && (
-        <DeleteModal setDeleteModalOpen={setDeleteModalOpen} id={resource.id} name={resource.name} />
+        <DeleteModal 
+          setDeleteModalOpen={setDeleteModalOpen} 
+          id={resource.id} 
+          name={resource.name}
+          setRerender={setRerender}
+        />
       )}
     </>
   )

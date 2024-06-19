@@ -2,7 +2,10 @@ import React, { useRef, useState, useEffect } from "react";
 import { MdOutlineFileUpload } from "react-icons/md";
 import { TailSpin } from "react-loader-spinner";
 
-function AddModal({ setAddModalOpen }) {
+function AddModal({
+  setAddModalOpen,
+  setRerender,
+}) {
   const modalRef = useRef();
   const fileInputRef = useRef(null);
   const headers = ["Name", "Category", "Sub Category", "Tag"];
@@ -31,7 +34,7 @@ function AddModal({ setAddModalOpen }) {
   const handleFileChange = () => {
     const file = fileInputRef.current.files[0];
     if (file) {
-      setFileName(file.name); // Set the file name in state
+      setFileName(file.name);
     }
   };
 
@@ -55,9 +58,11 @@ function AddModal({ setAddModalOpen }) {
     })
     .then(response => response.json())
     .then(data => {
-      if (data.response) {
-        console.log(data.response);
-        return data.response;
+      if (data) {
+        setRerender(true);
+        setAddModalOpen(false);
+        setLoading(false);
+        return data;
       }
     })
     .catch((error) => {
@@ -73,8 +78,7 @@ function AddModal({ setAddModalOpen }) {
   const handleConfirm = () => {
     setLoading(true);
     addResource().then(() => {
-      setLoading(false);
-      setAddModalOpen(false);
+      
     });
   };
 
@@ -119,7 +123,7 @@ function AddModal({ setAddModalOpen }) {
             <p className="text-xs mb-3">Supported file types: .xlsx</p>
             <label 
               htmlFor="file-upload" 
-              className="rounded-lg py-1 border border-2 border-gray-200 w-full flex flex-row justify-center cursor-pointer"
+              className="rounded-lg py-1 border border-2 border-gray-200 w-full flex flex-row gap-1 justify-center cursor-pointer"
             >
               <MdOutlineFileUpload size={20} />
               {fileName ? fileName : "Choose File"}
