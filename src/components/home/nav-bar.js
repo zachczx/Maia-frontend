@@ -1,5 +1,6 @@
 import { TbMessageCircleQuestion } from "react-icons/tb";
 import Profile from "@/components/home/profile";
+import CustomNotification from "@/components/home/notification";
 
 function NavBar () {
   return (
@@ -10,7 +11,10 @@ function NavBar () {
             Call Center System
         </div>
       </div>
-      <Profile />
+      <div className="flex flex-row gap-5">
+        <CustomNotification />
+        <Profile />
+      </div>
     </div>
   )
 }

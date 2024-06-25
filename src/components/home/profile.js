@@ -30,7 +30,7 @@ function Profile () {
 
   return (
     <div>
-      <button onClick={handleProfileOpen}>
+      <button onClick={handleProfileOpen} className="flex items-center">
         <IoPersonCircleOutline size={25} color="white" />
       </button>
       {profileOpen && (

@@ -10,6 +10,7 @@ function AssistantTab() {
       "caller_info": {
         "name": "Jon Tan",
         "phone_number": "91234567",
+        "email": "test@gmail.com"
       },
       "call_notes": "this is the call notes",
       "conversation": {
@@ -23,6 +24,7 @@ function AssistantTab() {
       "caller_info": {
         "name": "Tan Xiao Ling",
         "phone_number": "91234567",
+        "email": "test@gmail.com"
       },
       "call_notes": "this is the call notes",
       "conversation": {
@@ -36,6 +38,7 @@ function AssistantTab() {
       "caller_info": {
         "name": "Amy Tay",
         "phone_number": "91234567",
+        "email": "test@gmail.com"
       },
       "call_notes": "this is the call notes",
       "conversation": {
@@ -49,6 +52,7 @@ function AssistantTab() {
       "caller_info": {
         "name": "Amy Tay",
         "phone_number": "91234567",
+        "email": "test@gmail.com"
       },
       "call_notes": "this is the call notes",
       "conversation": {

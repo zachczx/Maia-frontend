@@ -22,7 +22,7 @@ function Information ({
             <input
               type="text"
               id="name"
-              value={selectedCall.caller_info.name}
+              value={selectedCall.caller_info.phone_number}
               className="border border-2 border-gray-200 col-span-3 rounded-lg px-2 py-1 focus:outline-0"
             />
             </div>
@@ -31,7 +31,7 @@ function Information ({
             <input
               type="text"
               id="name"
-              value={selectedCall.caller_info.name}
+              value={selectedCall.caller_info.email}
               className="border border-2 border-gray-200 col-span-3 rounded-lg px-2 py-1 focus:outline-0"
             />
           </div>
