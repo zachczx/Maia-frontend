@@ -1,7 +1,7 @@
 import React, { useEffect, useState} from "react";
 import { IoMdSend } from "react-icons/io";
-import { useDispatch } from 'react-redux';
-import { addMessage } from '../../features/chatHistorySlice'; 
+// import { useDispatch } from 'react-redux';
+// import { addMessage } from '../../features/chatHistorySlice'; 
 
 function InputBar ({
   messages,
@@ -9,7 +9,7 @@ function InputBar ({
 }) {
   const [inputValue, setInputValue] = useState("");
   const [isFetchingData, setIsFetchingData] = useState(false);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
@@ -52,7 +52,6 @@ function InputBar ({
         ...prevMessages,
         message
       ]);
-      dispatch(addMessage(message))
 
       setIsFetchingData(false);
     }
@@ -60,7 +59,7 @@ function InputBar ({
     if (messages.length%2 === 0 && messages.length !== 0){
       getChatResponse()
     }
-  }, [messages, setMessages, dispatch])
+  }, [messages, setMessages])
   
 
   const handleQuerySubmit = () => {
@@ -70,7 +69,7 @@ function InputBar ({
       ...prevMessages,
       clientInput
     ]); 
-    dispatch(addMessage(clientInput))
+    // dispatch(addMessage(clientInput))
     setInputValue("");
   };
 

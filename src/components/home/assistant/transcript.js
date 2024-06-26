@@ -1,15 +1,27 @@
 import React, { useState, useRef, useEffect } from "react";
 import { SlCallIn, SlCallEnd } from "react-icons/sl";
 import { HiOutlineLightBulb } from "react-icons/hi";
+import { AiOutlineBarChart } from 'react-icons/ai';
+import { TailSpin } from "react-loader-spinner";
 import TranscriptSegment from "@/components/home/assistant/transcript-segment";
 
-function Transcript() {
+function Transcript({
+  setContent,
+  setStep,
+}) {
   const [recording, setRecording] = useState(false);
+  const [recordingEnd, setRecordingEnd] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [transcript, setTranscript] = useState([]);
+  
   const socketRef = useRef(null);
   const audioContextRef = useRef(null);
   const mediaStreamRef = useRef(null);
   const transcriptContainerRef = useRef(null);
+
+  const formatTranscript = (transcript) => {
+    return transcript.map(item => `${item.role} : ${item.content}`).join('\n');
+  }
 
   const startRecording = async () => {
     try {
@@ -99,6 +111,9 @@ function Transcript() {
     }
 
     setRecording(false);
+    setRecordingEnd(true);
+
+    setContent(formatTranscript(transcript));
   };
 
   const fetchSuggestion = () => {
@@ -111,6 +126,12 @@ function Transcript() {
     }
   }
 
+  const fetchClassification = () => {
+    setLoading(true);
+    setStep(3);
+  }
+
+
   useEffect(() => {
     if (transcriptContainerRef.current) {
       transcriptContainerRef.current.scrollTop = transcriptContainerRef.current.scrollHeight;
@@ -118,10 +139,10 @@ function Transcript() {
   }, [transcript]);
 
   return (
-    <div className="pt-4 col-span-4 h-full">
+    <div className="pt-4 col-span-3 h-full">
       <div className="px-8 border-b border-gray-200 pb-2 flex flex-row justify-between">
         <div className="font-semibold">Transcript</div>
-        <div className="flex flex-row gap-3">
+        <div className={`flex flex-row gap-3 ${recordingEnd ? 'hidden': ''}`}>
           <button 
             className={`flex flex-row gap-2 items-center bg-blue-50 px-2 py-1 rounded-lg ${recording ? '' :'hidden'}`}
             onClick={fetchSuggestion}
@@ -137,8 +158,32 @@ function Transcript() {
           >
             {recording ? <SlCallEnd size={14}/> : <SlCallIn size={14}/>}
             <span className="text-sm">
-              {recording ? 'End Call' : 'Accept Call'}
+              {recording ? 'End Call' : 'Start Call'}
             </span>
+          </button>
+        </div>
+        <div className={` ${recordingEnd ? '':'hidden'}`}>
+          <button 
+            className="flex flex-row gap-2 items-center text-sm text-white bg-accent px-2 py-1 rounded-lg" 
+            onClick={fetchClassification}
+          >
+            {loading ? (
+              <TailSpin
+                visible={true}
+                height="20"
+                width="20"
+                color="#fff"
+                ariaLabel="tail-spin-loading"
+                radius="1"
+                wrapperStyle={{}}
+                wrapperClass=""
+              />
+            ) : (
+              <div className="flex flex-row gap-2">
+                <AiOutlineBarChart size={20} />
+                <span>Run Analysis</span>
+              </div>
+            )}
           </button>
         </div>
       </div>
