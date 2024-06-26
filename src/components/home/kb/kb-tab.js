@@ -4,7 +4,7 @@ import { MdAddCircle } from "react-icons/md";
 import AddModal from "@/components/home/kb/add-modal";
 
 function KBTab () {
-  const headers = ["Name", "Category", "Sub Category", "Created at", "Last Updated"];
+  const headers = ["Name", "Category", "Sub Category", "Sub Subcategory", "Created at", "Last Updated"];
   const [resources, setResources] = useState([]);
   const [addModalOpen, setAddModalOpen] = useState(false);
   const [rerender, setRerender] = useState(false);
@@ -36,7 +36,7 @@ function KBTab () {
 
   return (
     <div className="w-full pt-4">
-      <div className="px-5 grid grid-cols-7 text-sm border-b-2 border-gray-200 text-gray-500">
+      <div className="px-5 grid grid-cols-8 text-sm border-b-2 border-gray-200 text-gray-500">
         {headers.map((header, index) => (
           <div key={index} className={`px-2 pb-3 pt-4 ${header === "Name" ? "col-span-2" : ""}`}>
             {header}

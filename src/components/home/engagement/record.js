@@ -41,8 +41,7 @@ function Record({
 
 
   const headers = [
-    "First Name", 
-    "Last Name", 
+    "Customer ID", 
     "Channel", 
     "Query Type", 
     "Category", 

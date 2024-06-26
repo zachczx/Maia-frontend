@@ -7,12 +7,13 @@ function EditModal({
   setRerender,
 }){
   const modalRef = useRef();
-  const headers = ["Name", "Category", "Sub Category", "Tag"];
+  const headers = ["Name", "Category", "Sub Category", "Sub Subcategory", "Tag"];
   const [loading, setLoading] = useState(false);
   const [currValues, setCurrValues] = useState({
     "name": resource.name,
     "category": resource.category,
     "sub_category": resource.sub_category,
+    "sub_subcategory": resource.sub_subcategory,
     "tag": resource.tag,
   })
 

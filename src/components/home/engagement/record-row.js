@@ -40,8 +40,7 @@ function EngagementRow ({
       onMouseLeave={() => setShowButtons(false)}
       className={index % 2 === 0 ? 'bg-blue-50' : ''}
     >
-      <td className="pl-8 pr-2 py-3">{item.customer_first_name}</td>
-      <td className="px-2 py-3">{item.customer_last_name}</td>
+      <td className="pl-8 pr-2 py-3">{item.customer}</td>
       <td className="px-2 py-3">{renderChannel(item.channel)}</td>
       <td className="px-2 py-3">{item.query_type}</td>
       <td className="px-2 py-3">{item.category}</td>

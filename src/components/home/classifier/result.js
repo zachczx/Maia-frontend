@@ -10,7 +10,7 @@ function Result ({
   setStep,
   channel,
 }) {
-  const headers = ["Query Type", "Category", "Sub Category", "Root Cause", "Sentiment"];
+  const headers = ["Query Type", "Category", "Sub Category", "Sub Subcategory", "Root Cause", "Sentiment"];
   const [loading, setLoading] = useState(false);
 
   const convertToJsonName = (str) => str.replace(" ", "_").toLowerCase();

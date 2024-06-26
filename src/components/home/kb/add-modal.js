@@ -8,7 +8,8 @@ function AddModal({
 }) {
   const modalRef = useRef();
   const fileInputRef = useRef(null);
-  const headers = ["Name", "Category", "Sub Category", "Tag"];
+  const headers = ["Name", "Category", "Sub Category", "Sub Subcategory", "Tag"];
+  const compulsory = ["Name", "Category", "Sub Category"];
 
   const initialFormValues = headers.reduce((acc, header) => {
     acc[header] = '';
@@ -113,7 +114,7 @@ function AddModal({
                 name={header}
                 value={formValues[header]}
                 onChange={handleInputChange}
-                placeholder={header}
+                placeholder={`${header}${compulsory.includes(header) ? '*' : ''}`}
                 className="border border-2 border-gray-200 w-full rounded-lg px-2 py-1 focus:outline-0"
               />
             </div>

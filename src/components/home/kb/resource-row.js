@@ -30,7 +30,7 @@ function ResourceRow ({
       <div
         onMouseEnter={() => setShowButtons(true)} 
         onMouseLeave={() => setShowButtons(false)}
-        className={`grid grid-cols-7 text-sm py-3 px-5 w-screen
+        className={`grid grid-cols-8 text-sm py-3 px-5 w-screen
           ${index%2 === 1 
             ? "" 
             : "bg-blue-50" 
@@ -40,6 +40,7 @@ function ResourceRow ({
         <div className="px-2 truncate col-span-2">{resource.name}</div>
         <div className="px-2 truncate">{resource.category}</div>
         <div className="px-2 truncate">{resource.sub_category}</div>
+        <div className="px-2 truncate">{resource.sub_subcategory}</div>
         <div className="px-2 truncate">{convertDateTime(resource.created_at)}</div>
         <div className="px-2 truncate">{convertDateTime(resource.updated_at)}</div>
         <div className={`px-2 truncate ${showButtons ? 'flex flex-rows gap-3' : 'hidden'}`}>
