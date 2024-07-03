@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 
 function AgentMessage ({
     content,
@@ -9,5 +10,9 @@ function AgentMessage ({
     </div>
   )
 }
+
+AgentMessage.propTypes = {
+  content: PropTypes.string.isRequired,
+};
 
 export default AgentMessage;

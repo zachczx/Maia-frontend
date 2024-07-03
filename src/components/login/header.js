@@ -1,3 +1,4 @@
+import React from 'react';
 import { TbMessageCircleQuestion } from "react-icons/tb";
 
 function Header () {

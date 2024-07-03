@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from 'prop-types';
 import { TailSpin } from "react-loader-spinner";
 import { AiOutlineBarChart } from 'react-icons/ai';
 
@@ -60,5 +61,11 @@ function TextInput({
     </div>
   )
 }
+
+TextInput.propTypes = {
+    channel: PropTypes.string.isRequired,
+    setStep: PropTypes.func.isRequired,
+    setContent: PropTypes.func.isRequired,
+  };
 
 export default TextInput;

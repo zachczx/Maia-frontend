@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import PropTypes from 'prop-types';
 import { SlCallIn, SlCallEnd } from "react-icons/sl";
 import { HiOutlineLightBulb } from "react-icons/hi";
 import { AiOutlineBarChart } from 'react-icons/ai';
@@ -199,5 +200,10 @@ function Transcript({
     </div>
   );
 }
+
+Transcript.propTypes = {
+  setContent: PropTypes.func.isRequired,
+  setStep: PropTypes.func.isRequired,
+};
 
 export default Transcript;

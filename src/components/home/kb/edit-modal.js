@@ -1,4 +1,5 @@
 import React, {useRef, useEffect, useState} from "react";
+import PropTypes from 'prop-types';
 import { TailSpin } from "react-loader-spinner";
 
 function EditModal({
@@ -135,5 +136,18 @@ function EditModal({
     </div>
   )
 }
+
+EditModal.propTypes = {
+  setEditModalOpen: PropTypes.func.isRequired,
+  resource: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      category: PropTypes.string.isRequired,
+      sub_category: PropTypes.string.isRequired,
+      sub_subcategory: PropTypes.string.isRequired,
+      tag: PropTypes.string,
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  }).isRequired,
+  setRerender: PropTypes.func.isRequired,
+};
 
 export default EditModal;

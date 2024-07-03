@@ -1,8 +1,8 @@
 import React, { useRef, useState, useEffect } from "react";
+import PropTypes from 'prop-types';
 import { TailSpin } from "react-loader-spinner";
 
 function ClassificationModal({
-  classificationResult,
   setClassificationModalOpen,
 }) {
   const modalRef = useRef();
@@ -100,5 +100,9 @@ function ClassificationModal({
     </div>
   );
 }
+
+ClassificationModal.propTypes = {
+  setClassificationModalOpen: PropTypes.func.isRequired,
+};
 
 export default ClassificationModal;

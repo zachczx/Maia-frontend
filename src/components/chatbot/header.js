@@ -1,3 +1,5 @@
+import React from 'react';
+import PropTypes from 'prop-types';
 import { TbMessageCircleQuestion } from "react-icons/tb";
 import { BsDash } from "react-icons/bs";
 
@@ -23,5 +25,9 @@ function Header ({
         </div>
     )
 }
+
+Header.propTypes = {
+  setChatWindowOpen: PropTypes.func.isRequired,
+};
 
 export default Header;

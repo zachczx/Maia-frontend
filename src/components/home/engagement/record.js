@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import EngagementRow from "@/components/home/engagement/record-row";
 import { MdAddCircle } from "react-icons/md";
 
@@ -113,5 +114,10 @@ function Record({
     </div>
   );
 }
+
+Record.propTypes = {
+  setStep: PropTypes.func.isRequired,
+  setChannel: PropTypes.func.isRequired,
+};
 
 export default Record;

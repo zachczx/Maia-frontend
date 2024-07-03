@@ -1,4 +1,5 @@
 import React, {useRef, useEffect, useState} from "react";
+import PropTypes from 'prop-types';
 import { TailSpin } from "react-loader-spinner";
 
 function DeleteModal({
@@ -41,7 +42,7 @@ function DeleteModal({
       }
       return response.json();
     })
-    .then(data =>{})
+    .then(data =>{console.log(data)})
     .catch((error) => {
         console.log(error)
         return "An error has occurred";
@@ -98,5 +99,12 @@ function DeleteModal({
     </div>
   )
 }
+
+DeleteModal.propTypes = {
+  setDeleteModalOpen: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  setRerender: PropTypes.func.isRequired,
+};
 
 export default DeleteModal;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function Information({
   information,
@@ -55,5 +56,16 @@ function Information({
     </div>
   );
 }
+
+Information.propTypes = {
+  information: PropTypes.shape({
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+    phoneNumber: PropTypes.string,
+    email: PropTypes.string,
+    call_notes: PropTypes.string,
+  }).isRequired,
+  setInformation: PropTypes.func.isRequired,
+};
 
 export default Information;

@@ -1,4 +1,5 @@
 import React, {useRef, useEffect, useState} from "react";
+import PropTypes from 'prop-types';
 import { TailSpin } from "react-loader-spinner";
 
 function Result ({
@@ -138,5 +139,21 @@ function Result ({
     </div>
   )
 }
+
+Result.propTypes = {
+  fetchedData: PropTypes.bool.isRequired,
+  data: PropTypes.object.isRequired,
+  setData: PropTypes.func.isRequired,
+  information: PropTypes.shape({
+    first_name: PropTypes.string.isRequired,
+    last_name: PropTypes.string.isRequired,
+    phone_number: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    call_notes: PropTypes.string.isRequired,
+  }).isRequired,
+  content: PropTypes.string.isRequired,
+  setStep: PropTypes.func.isRequired,
+  channel: PropTypes.string.isRequired,
+};
 
 export default Result;

@@ -1,3 +1,5 @@
+import React from 'react';
+import PropTypes from 'prop-types';
 import { MdAddCircle } from "react-icons/md";
 
 function History ({
@@ -28,5 +30,29 @@ function History ({
     </div>
   )
 }
+
+History.propTypes = {
+  callHistory: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      caller_info: PropTypes.shape({
+        name: PropTypes.string.isRequired,
+      }).isRequired,
+      conversation: PropTypes.shape({
+        timestamp: PropTypes.string.isRequired,
+      }).isRequired,
+    })
+  ).isRequired,
+  selectedCall: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    caller_info: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+    }).isRequired,
+    conversation: PropTypes.shape({
+      timestamp: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
+  setSelectedCall: PropTypes.func.isRequired,
+};
 
 export default History;

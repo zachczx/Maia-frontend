@@ -1,3 +1,4 @@
+import React from 'react';
 import { TbMessageCircleQuestion } from "react-icons/tb";
 import Profile from "@/components/home/nav-bar/profile";
 import CustomNotification from "@/components/home/nav-bar/notification";

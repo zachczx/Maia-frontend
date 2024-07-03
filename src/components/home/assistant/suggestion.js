@@ -1,3 +1,5 @@
+import React from 'react';
+import PropTypes from 'prop-types';
 import { HiOutlineLightBulb } from "react-icons/hi";
 
 function Suggestion({
@@ -13,5 +15,9 @@ function Suggestion({
     </div>
   )
 }
+
+Suggestion.propTypes = {
+  content: PropTypes.string.isRequired,
+};
 
 export default Suggestion;

@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import PropTypes from 'prop-types';
 import { FaCheckCircle, FaTimesCircle } from 'react-icons/fa';
 import { FaRegTrashCan } from "react-icons/fa6";
 import { FaRegEdit } from "react-icons/fa";
@@ -56,5 +57,20 @@ function EngagementRow ({
     </tr>
   )
 }
+
+EngagementRow.propTypes = {
+  index: PropTypes.number.isRequired,
+  item: PropTypes.shape({
+    customer: PropTypes.string.isRequired,
+    channel: PropTypes.number.isRequired,
+    query_type: PropTypes.string.isRequired,
+    category: PropTypes.string.isRequired,
+    sub_category: PropTypes.string.isRequired,
+    sub_subcategory: PropTypes.string.isRequired,
+    sentiment: PropTypes.string.isRequired,
+    timestamp: PropTypes.string.isRequired,
+    resolution: PropTypes.bool.isRequired,
+  }).isRequired,
+};
 
 export default EngagementRow;

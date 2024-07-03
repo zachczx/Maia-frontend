@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import PropTypes from 'prop-types';
 import { TailSpin } from "react-loader-spinner";
 import Result from "@/components/home/classifier/result"
 
@@ -122,5 +123,18 @@ function ClassifierTab({
     </div>
   );
 }
+
+ClassifierTab.propTypes = {
+  content: PropTypes.string.isRequired,
+  information: PropTypes.shape({
+    first_name: PropTypes.string.isRequired,
+    last_name: PropTypes.string.isRequired,
+    phone_number: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    call_notes: PropTypes.string.isRequired,
+  }).isRequired,
+  channel: PropTypes.string.isRequired,
+  setStep: PropTypes.func.isRequired,
+};
 
 export default ClassifierTab;

@@ -1,3 +1,5 @@
+import React from 'react';
+import PropTypes from 'prop-types';
 import { IoMdPerson } from "react-icons/io";
 
 function Speech({ role, content }) {
@@ -16,5 +18,10 @@ function Speech({ role, content }) {
     </div>
   );
 }
+
+Speech.propTypes = {
+  role: PropTypes.oneOf(['caller', 'agent']).isRequired,
+  content: PropTypes.string.isRequired,
+};
 
 export default Speech;

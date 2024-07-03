@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
+import PropTypes from 'prop-types';
 import { MdOutlineFileUpload } from "react-icons/md";
 import { TailSpin } from "react-loader-spinner";
 
@@ -170,5 +171,10 @@ function AddModal({
     </div>
   );
 }
+
+AddModal.propTypes = {
+  setAddModalOpen: PropTypes.func.isRequired,
+  setRerender: PropTypes.func.isRequired,
+};
 
 export default AddModal;

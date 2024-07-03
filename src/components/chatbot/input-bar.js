@@ -1,4 +1,5 @@
 import React, { useEffect, useState} from "react";
+import PropTypes from 'prop-types';
 import { IoMdSend } from "react-icons/io";
 // import { useDispatch } from 'react-redux';
 // import { addMessage } from '../../features/chatHistorySlice'; 
@@ -90,5 +91,13 @@ function InputBar ({
     </div>
   )
 }
+
+InputBar.propTypes = {
+  messages: PropTypes.arrayOf(PropTypes.shape({
+    content: PropTypes.string.isRequired,
+    role: PropTypes.oneOf(['client', 'agent']).isRequired,
+  })).isRequired,
+  setMessages: PropTypes.func.isRequired,
+};
 
 export default InputBar;

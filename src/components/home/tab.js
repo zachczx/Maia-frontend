@@ -1,3 +1,6 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+
 function Tab ({
     selectedTab,
     setSelectedTab,
@@ -28,5 +31,10 @@ function Tab ({
     </div>
   )
 }
+
+Tab.propTypes = {
+  selectedTab: PropTypes.string.isRequired,
+  setSelectedTab: PropTypes.func.isRequired,
+};
 
 export default Tab;

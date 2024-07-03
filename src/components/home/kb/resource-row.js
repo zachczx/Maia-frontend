@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import PropTypes from 'prop-types';
 import { FaRegTrashCan } from "react-icons/fa6";
 import { FaRegEdit } from "react-icons/fa";
 import DeleteModal from "@/components/home/kb/delete-modal";
@@ -66,5 +67,20 @@ function ResourceRow ({
     </>
   )
 }
+
+ResourceRow.propTypes = {
+  index: PropTypes.number.isRequired,
+  resource: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      category: PropTypes.string.isRequired,
+      sub_category: PropTypes.string.isRequired,
+      sub_subcategory: PropTypes.string.isRequired,
+      created_at: PropTypes.string.isRequired,
+      updated_at: PropTypes.string.isRequired,
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  }).isRequired,
+  setRerender: PropTypes.func.isRequired,
+};
+
 
 export default ResourceRow;

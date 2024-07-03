@@ -1,6 +1,7 @@
 import React from "react";
+import PropTypes from 'prop-types';
 
-function ClientMessage ({
+function ClientMessage({
     content,
 }) {
     return (
@@ -10,6 +11,10 @@ function ClientMessage ({
         </div>
       </div>
     )
-  }
-  
-  export default ClientMessage;
+}
+
+ClientMessage.propTypes = {
+    content: PropTypes.string.isRequired,
+};
+
+export default ClientMessage;

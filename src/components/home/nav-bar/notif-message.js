@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { FaInfoCircle, FaExclamationTriangle, FaTimesCircle } from 'react-icons/fa';
 
 function NotifMessage({
@@ -62,5 +63,11 @@ function NotifMessage({
         </div>
     )
 }
+
+NotifMessage.propTypes = {
+    type: PropTypes.oneOf(['info', 'warning', 'error']).isRequired,
+    content: PropTypes.string.isRequired,
+    timestamp: PropTypes.string.isRequired,
+};
 
 export default NotifMessage;
