@@ -7,6 +7,7 @@ function Result ({
   data,
   setData,
   information,
+  setInformation,
   content,
   setStep,
   channel,
@@ -27,14 +28,11 @@ function Result ({
     textarea.style.height = hiddenDiv.scrollHeight + 'px'; 
   };
 
-  const updateDB = () => {
+  const updateEngagementDB = (customerId) => {
     const url = 'http://127.0.0.1:8000/api/engagement/';
 
     const formData = new FormData();
-    formData.append('customer_first_name', information.first_name);
-    formData.append('customer_last_name', information.last_name);
-    formData.append('customer_phone_number', information.phone_number);
-    formData.append('customer_email', information.email);
+    formData.append("customer", customerId);
     formData.append('notes', information.call_notes);
     formData.append("conversation", content)
     
@@ -71,6 +69,49 @@ function Result ({
       setLoading(false);
       return "An error has occurred";
     });
+  }
+
+  const updateCustomerDB = () => {
+    const url = 'http://127.0.0.1:8000/api/customer/';
+
+    const formData = new FormData();
+    formData.append('first_name', information.first_name);
+    formData.append('last_name', information.last_name);
+    formData.append('country_code', information.country_code);
+    formData.append('phone_number', information.phone_number);
+    formData.append('email', information.email);
+
+    return fetch(url, {
+      method: 'POST',
+      body: formData,
+    })
+    .then(response => response.json())
+    .then(data => {
+      return data.id
+    })
+    .catch((error) => {
+      console.log(error);
+      return 0;
+    });
+  }
+
+  const updateDB = () => {
+    var customerId;
+    if (information.id > 0){
+      customerId = information.id;
+    } else {
+      customerId = updateCustomerDB();
+    }
+
+    updateEngagementDB(customerId);
+    setInformation({
+      "first_name": "",
+      "last_name": "",
+      "country_code": 65,
+      "phone_number": "",
+      "email": "",
+      "call_notes": "",
+    })
   }
 
   useEffect(() => {
@@ -145,12 +186,15 @@ Result.propTypes = {
   data: PropTypes.object.isRequired,
   setData: PropTypes.func.isRequired,
   information: PropTypes.shape({
+    id: PropTypes.number.isRequired,
     first_name: PropTypes.string.isRequired,
     last_name: PropTypes.string.isRequired,
+    country_code: PropTypes.number.isRequired,
     phone_number: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
-    call_notes: PropTypes.string.isRequired,
+    call_notes: PropTypes.string,
   }).isRequired,
+  setInformation: PropTypes.func.isRequired,
   content: PropTypes.string.isRequired,
   setStep: PropTypes.func.isRequired,
   channel: PropTypes.string.isRequired,

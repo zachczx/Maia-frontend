@@ -6,6 +6,7 @@ import Result from "@/components/home/classifier/result"
 function ClassifierTab({
   content,
   information,
+  setInformation,
   channel,
   setStep,
 }) {
@@ -116,6 +117,7 @@ function ClassifierTab({
         data={data}
         setData={setData}
         information={information}
+        setInformation={setInformation}
         content={content}
         setStep={setStep}
         channel={channel}
@@ -133,6 +135,7 @@ ClassifierTab.propTypes = {
     email: PropTypes.string.isRequired,
     call_notes: PropTypes.string.isRequired,
   }).isRequired,
+  setInformation: PropTypes.func.isRequired,
   channel: PropTypes.string.isRequired,
   setStep: PropTypes.func.isRequired,
 };

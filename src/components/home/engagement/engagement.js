@@ -10,6 +10,7 @@ function Engagement () {
   const [information, setInformation] = useState({
     "first_name": "",
     "last_name": "",
+    "country_code": 65,
     "phone_number": "",
     "email": "",
     "call_notes": "",
@@ -24,7 +25,7 @@ function Engagement () {
         <AssistantTab channel={channel} setStep={setStep} information={information} setInformation={setInformation} setContent={setContent} />
       )}
       {step === 3  && (
-        <ClassifierTab content={content} information={information} channel={channel} setStep={setStep}/>
+        <ClassifierTab content={content} information={information} setInformation={setInformation} channel={channel} setStep={setStep}/>
       )}
     </div>
   )
