@@ -9,6 +9,7 @@ function Record({
 }) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [data, setData] = useState([]);
+  const [rerender, setRerender] = useState(false);
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
@@ -30,15 +31,17 @@ function Record({
       .then(data => {
           if (data) {
             setData(Array.from(data));
+            setRerender(false);
           }
       })
       .catch((error) => {
           console.log(error);
+          setRerender(false);
       });
     }
 
     fetchData();
-  }, [])
+  }, [rerender])
 
 
   const headers = [
@@ -107,7 +110,12 @@ function Record({
         </thead>
         <tbody>
         {data.map((item, index) => (
-            <EngagementRow key={index} item={item} index={index}/>
+            <EngagementRow 
+              key={index}
+              item={item}
+              index={index}
+              setRerender={setRerender}
+            />
           ))}
         </tbody>
       </table>

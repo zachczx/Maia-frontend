@@ -26,6 +26,10 @@ function ResourceRow ({
     return date
   }
 
+  const formatCategory = (category) => {
+    return category || "-";
+  };
+
   return (
     <> 
       <div
@@ -39,14 +43,14 @@ function ResourceRow ({
         `}
       >
         <div className="px-2 truncate col-span-2">{resource.name}</div>
-        <div className="px-2 truncate">{resource.category}</div>
-        <div className="px-2 truncate">{resource.sub_category}</div>
-        <div className="px-2 truncate">{resource.sub_subcategory}</div>
+        <div className="px-2 truncate">{formatCategory(resource.category)}</div>
+        <div className="px-2 truncate">{formatCategory(resource.sub_category)}</div>
+        <div className="px-2 truncate">{formatCategory(resource.sub_subcategory)}</div>
         <div className="px-2 truncate">{convertDateTime(resource.created_at)}</div>
         <div className="px-2 truncate">{convertDateTime(resource.updated_at)}</div>
         <div className={`px-2 truncate ${showButtons ? 'flex flex-rows gap-3' : 'hidden'}`}>
-          <FaRegEdit size={17} onClick={handleEditModalOpen}/>
-          <FaRegTrashCan size={16} onClick={handleDeleteModalOpen}/>
+          <FaRegEdit size={17} onClick={handleEditModalOpen} />
+          <FaRegTrashCan size={16} onClick={handleDeleteModalOpen} />
         </div>
       </div>
       {editModalOpen && (

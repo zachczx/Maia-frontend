@@ -76,14 +76,14 @@ function ClassifierTab({
     <div className="py-8 px-8 w-full grid grid-cols-5 h-full gap-12 overflow-y-auto" style={{ height: 'calc(100vh - 121px)' }}>
       <div className={`flex flex-col gap-6 ${fetchedData ? 'col-span-5 md:col-span-2' : 'col-span-5'}`}>
         <textarea
-          className={`border border-2 border-gray-200 rounded-lg w-full focus:outline-0 p-2 text-sm ${fetchedData ? 'h-[35%]' : 'h-[50%]'}`}
+          className={`border border-1 border-gray-400 rounded w-full focus:outline-0 p-2 text-sm ${fetchedData ? 'h-[35%]' : 'h-[50%]'}`}
           onChange={handleQueryChange}
           value={query}
           disabled={query !== ""}
         />
         <input
           type='text'
-          className={`border border-2 border-gray-200 rounded-lg w-full h-fit focus:outline-0 p-2 text-sm ${fetchedData ? '' : 'hidden'}`}
+          className={`border border-1 border-gray-400 rounded w-full h-fit focus:outline-0 p-2 text-sm ${fetchedData ? '' : 'hidden'}`}
           placeholder="Enter feedback for a more accurate analysis"
           value={feedback}
           onChange={handleFeedbackChange}

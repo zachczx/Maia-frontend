@@ -4,7 +4,6 @@ import { TailSpin } from "react-loader-spinner";
 
 function DeleteModal({
   setDeleteModalOpen,
-  name,
   id,
   setRerender,
 }){
@@ -25,7 +24,7 @@ function DeleteModal({
   }, [setDeleteModalOpen]);
 
   const deleteResource = () => {
-    const url = 'http://127.0.0.1:8000/api/resource/' + id + "/";
+    const url = 'http://127.0.0.1:8000/api/engagement/' + id + "/";
 
     return fetch(url, {
         method: 'DELETE',
@@ -62,11 +61,7 @@ function DeleteModal({
     <div className="inset-0 fixed w-screen h-screen z-50 flex justify-center items-center">
       <div ref={modalRef} className="absolute bg-white rounded-md border border-gray-200 shadow-lg z-50 w-64 h-fit p-5 text-sm">
         <div className="text-center mb-5">
-          Are you sure you want to delete 
-          <span className="font-semibold px-1">
-            {name}
-          </span>
-          from the Knowledge Base?
+          Are you sure you want to delete this engagement record from the database?
         </div>
         <div className="flex flex-rows gap-3 justify-between mx-8">
         <button 
@@ -102,7 +97,6 @@ function DeleteModal({
 
 DeleteModal.propTypes = {
   setDeleteModalOpen: PropTypes.func.isRequired,
-  name: PropTypes.string.isRequired,
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   setRerender: PropTypes.func.isRequired,
 };

@@ -6,7 +6,7 @@ function ClientMessage({
 }) {
     return (
       <div className="flex justify-end ">
-        <div className="bg-accent h-fit w-fit max-w-[65%] rounded-t-lg rounded-bl-lg p-2 text-xs text-white break-words">
+        <div className="bg-accent h-fit w-fit max-w-[75%] rounded-t-lg rounded-bl-lg p-2 text-xs text-white break-words">
           { content }
         </div>
       </div>

@@ -353,45 +353,46 @@ function Information({
           )}
         </div>
 
-        <div className="flex flex-col text-sm">
+        <div className="flex flex-col text-xs">
           {headers.map((header, index) => (
-            <div key={index} className="grid grid-cols-6 mb-2 text-sm">
+            <div key={index} className="grid grid-cols-6 mb-2">
               <p className="col-span-2 flex items-center">{header}</p>
               <input
                 type="text"
                 id={header}
                 value={information[header.toLowerCase().replace(" ", "_")]}
                 onChange={(e) => handleInputChange(e, header)}
-                className="border border-2 border-gray-200 col-span-4 rounded-lg px-2 py-1 focus:outline-0"
+                autoComplete="off"
+                className="border border-1 border-gray-400 text-xs col-span-4 rounded px-2 py-1 focus:outline-0"
               />
             </div>
           ))}
-          <div className="grid grid-cols-6 mb-2 text-sm">
+          <div className="grid grid-cols-6 mb-2 text-xs">
             <p className="col-span-2 flex items-center">Phone Number</p>
-            <div className="col-span-4 flex flex-row items-center relative">
+            <div className="col-span-4 flex flex-row gap-1 items-center relative">
               <button
                 onClick={() => setDropdownOpen(!dropdownOpen)}
-                className="flex flex-row justify-between border border-2 border-gray-200 rounded-l-lg px-2 py-1 focus:outline-0 bg-white text-gray-700 w-[160px]"
+                className="flex flex-row justify-between border border-1 border-gray-400 text-xs rounded-l px-2 py-1 focus:outline-0 bg-white text-gray-700 w-[160px]"
               >
                 {information.country_code ? (
                   <>
                     <ReactCountryFlag
                       countryCode={countries.find(c => c.code === information.country_code)?.iso}
                       svg
-                      style={{ width: '1.5em', height: '1.5em' }}
+                      style={{ width: '1.3em', height: '1.3em' }}
                     />
                     <span>+{information.country_code}</span>
                   </>
                 ) : "Select"}
                 {dropdownOpen ? (
-                  <MdOutlineKeyboardArrowUp size={20} className='text-gray-700 flex self-center' />
+                  <MdOutlineKeyboardArrowUp size={15} className='text-gray-700 flex self-center' />
                 ):
                 (
-                  <MdOutlineKeyboardArrowDown size={20} className='text-gray-700 flex self-center' />
+                  <MdOutlineKeyboardArrowDown size={15} className='text-gray-700 flex self-center' />
                 )}
               </button>
               {dropdownOpen && (
-                <div className="absolute top-7 left-0 bg-white border-2 border-gray-200 rounded-lg mt-1 z-10 w-full h-[130px] overflow-y-auto">
+                <div className="absolute top-7 left-0 bg-white border-1 border-gray-400 rounded mt-1 z-10 w-full h-[130px] overflow-y-auto">
                   {countries.map((country, index) => (
                     <div
                       key={index}
@@ -414,7 +415,8 @@ function Information({
                 id="phone_number"
                 value={information.phone_number}
                 onChange={(e) => handleInputChange(e, "Phone Number")}
-                className="w-full border border-2 border-gray-200 rounded-r-lg px-2 py-1 focus:outline-0"
+                autoComplete="off"
+                className="w-full border border-1 border-gray-400 text-xs rounded-r px-2 py-1 focus:outline-0"
               />
             </div>
           </div>
@@ -425,8 +427,8 @@ function Information({
         <textarea
           value={information.call_notes}
           onChange={handleCallNotesChange}
-          className="focus:outline-0 p-2 w-full h-full bg-blue-50 text-sm"
-          placeholder="Enter notes here"
+          className="focus:outline-0 p-2 w-full h-full bg-blue-50 text-xs"
+          placeholder={`Enter additional details here \n\nFor example: \n- Is the customer a pre-enlistee or an NSman?`}
         />
       </div>
 
