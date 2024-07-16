@@ -38,7 +38,7 @@ MessageHistory.propTypes = {
     role: PropTypes.oneOf(['agent', 'client']).isRequired,
     content: PropTypes.string.isRequired,
   })).isRequired,
-  timestamp: PropTypes.string.isRequired,
+  timestamp: PropTypes.string,
 };
 
 export default MessageHistory;

@@ -73,7 +73,6 @@ function Transcript({
       socket.onmessage = (event) => {
         try {
           const data = JSON.parse(event.data);
-          
           if (data.type === "transcript") {
               setTranscript(data.message || []);
               console.log(transcript)

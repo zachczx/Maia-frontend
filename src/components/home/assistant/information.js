@@ -443,7 +443,7 @@ Information.propTypes = {
   information: PropTypes.shape({
     first_name: PropTypes.string,
     last_name: PropTypes.string,
-    country_code: PropTypes.string,
+    country_code: PropTypes.number,
     phone_number: PropTypes.string,
     email: PropTypes.string,
     call_notes: PropTypes.string,
