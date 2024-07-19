@@ -42,9 +42,9 @@ function TextInput({
                 wrapperClass=""
               />
             ) : (
-              <div className="flex flex-row gap-2">
+              <div className="flex flex-row gap-2 text-xs">
                 <AiOutlineBarChart size={20} />
-                <span>Run Analysis</span>
+                <span className="flex self-center">Analyse Case</span>
               </div>
             )}
           </button>
@@ -52,7 +52,7 @@ function TextInput({
       </div>
       <div className="px-8 pt-4 h-full">
       <textarea
-          className="w-full h-[85%] border border-gray-200 rounded p-2 focus:outline-0 text-sm"
+          className="w-full h-[85%] border border-gray-200 rounded p-2 focus:outline-0 text-xs"
           placeholder={`Enter ${channel} content here...`}
           value={textValue} // Bind value to state
           onChange={handleTextChange} // Handle change event

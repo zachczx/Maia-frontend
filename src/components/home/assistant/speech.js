@@ -6,7 +6,7 @@ function Speech({ role, content }) {
   return (
     <div className="text-sm my-4 flex flex-row gap-2">
       {role === "caller" && (
-        <div className="rounded-full bg-accent p-1 text-white">
+        <div className="rounded-full h-[28px] w-[28px] bg-accent p-1 text-white">
           <IoMdPerson size={20} />
         </div>
       )}

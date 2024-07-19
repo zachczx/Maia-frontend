@@ -76,9 +76,9 @@ ResourceRow.propTypes = {
   index: PropTypes.number.isRequired,
   resource: PropTypes.shape({
       name: PropTypes.string.isRequired,
-      category: PropTypes.string.isRequired,
-      sub_category: PropTypes.string.isRequired,
-      sub_subcategory: PropTypes.string.isRequired,
+      category: PropTypes.string,
+      sub_category: PropTypes.string,
+      sub_subcategory: PropTypes.string,
       created_at: PropTypes.string.isRequired,
       updated_at: PropTypes.string.isRequired,
       id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,

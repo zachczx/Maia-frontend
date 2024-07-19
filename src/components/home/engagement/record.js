@@ -75,10 +75,10 @@ function Record({
             <div className="relative">
                 <button
                   onClick={toggleDropdown}
-                  className="text-sm bg-accent font-normal text-white px-3 py-1.5 rounded-lg flex flex-row gap-2 mb-2"
+                  className="text-xs bg-accent font-normal text-white px-3 py-1.5 rounded-lg flex flex-row gap-2 mb-2"
                 >
                   <MdAddCircle size={20} />
-                  <span>Add Record</span>
+                  <span className="flex self-center">Add Record</span>
                 </button>
                 {dropdownOpen && (
                   <div className="font-normal absolute right-0 mt-0.5 w-48 bg-white rounded-md shadow-lg z-20">

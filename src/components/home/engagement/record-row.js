@@ -2,8 +2,9 @@ import React, {useState} from "react";
 import EditModal from "@/components/home/engagement/edit-modal"
 import DeleteModal from "@/components/home/engagement/delete-modal"
 import PropTypes from 'prop-types';
+import { IoMdInformationCircleOutline } from "react-icons/io";
 import { FaRegTrashCan, FaRegFaceFrown, FaRegFaceMeh, FaRegFaceSmile } from "react-icons/fa6";
-import { FaRegEdit, FaCheckCircle, FaTimesCircle, FaPhone, FaComments, FaEnvelope } from 'react-icons/fa';
+import { FaCheckCircle, FaTimesCircle, FaPhone, FaComments, FaEnvelope } from 'react-icons/fa';
 
 function EngagementRow ({
   index,
@@ -80,14 +81,14 @@ function EngagementRow ({
         <td className="px-2 py-3">{convertDateTime(item.timestamp)}</td>
         <td className="pr-8 pl-7 py-3">{renderResolution(item.resolution)}</td>
         <td className="px-2 py-3 flex flex-row gap-3">
-          <FaRegEdit 
-            size={17} 
-            className={`${showButtons ? '' : 'hidden'}`}
+          <IoMdInformationCircleOutline  
+            size={20} 
+            className={`${showButtons ? 'flex self-center' : 'hidden'}`}
             onClick={handleEditModalOpen}
           />
           <FaRegTrashCan 
             size={16} 
-            className={`${showButtons ? '' : 'hidden'}`} 
+            className={`${showButtons ? 'flex self-center' : 'hidden'}`} 
             onClick={handleDeleteModalOpen}
           />
         </td>

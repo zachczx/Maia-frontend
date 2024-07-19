@@ -22,7 +22,7 @@ function History ({
       </div>
       ))}
       <div className="absolute my-3 mx-6 bottom-0">
-        <button className="flex flex-row gap-2 bg-accent text-white text-sm w-fit rounded-lg px-2 py-1.5">
+        <button className="flex flex-row gap-2 bg-accent text-white text-xs w-fit rounded-lg px-2 py-1.5">
           <MdAddCircle size={20}/>
           Add New Call
         </button>

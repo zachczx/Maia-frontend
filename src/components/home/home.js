@@ -5,7 +5,7 @@ import Chatbot from "@/components/chatbot/chatbot";
 
 function Home () {
   return (
-    <div>
+    <div className='font-lato'>
       <NavBar />
       <Body />
       <Chatbot />

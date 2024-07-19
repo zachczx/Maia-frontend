@@ -148,7 +148,7 @@ function Transcript({
             onClick={fetchSuggestion}
           >
             <HiOutlineLightBulb size={18} />
-            <span className="text-sm">Request Suggestion</span>
+            <span className="text-xs">Request Suggestion</span>
           </button>
           <button
             className={`flex flex-row gap-2 items-center text-white px-2 py-1 rounded-lg ${
@@ -157,14 +157,14 @@ function Transcript({
             onClick={recording ? stopRecording : startRecording}
           >
             {recording ? <SlCallEnd size={14}/> : <SlCallIn size={14}/>}
-            <span className="text-sm">
+            <span className="text-xs">
               {recording ? 'End Call' : 'Start Call'}
             </span>
           </button>
         </div>
         <div className={` ${recordingEnd ? '':'hidden'}`}>
           <button 
-            className="flex flex-row gap-2 items-center text-sm text-white bg-accent px-2 py-1 rounded-lg" 
+            className="flex flex-row gap-2 items-center text-xs text-white bg-accent px-2 py-1 rounded-lg" 
             onClick={fetchClassification}
           >
             {loading ? (
@@ -179,9 +179,9 @@ function Transcript({
                 wrapperClass=""
               />
             ) : (
-              <div className="flex flex-row gap-2">
+              <div className="flex flex-row gap-2 text-xs">
                 <AiOutlineBarChart size={20} />
-                <span>Run Analysis</span>
+                <span className="text-xs">Analyse Case</span>
               </div>
             )}
           </button>

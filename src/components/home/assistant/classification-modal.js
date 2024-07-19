@@ -77,7 +77,7 @@ function ClassificationModal({
             Rerun Analysis
           </button>
           <button 
-            className={`px-2 py-1.5 rounded-lg text-sm bg-accent text-white ${loading ? "mx-auto": ""}`} 
+            className={`px-2 py-1.5 rounded-lg text-xs bg-accent text-white ${loading ? "mx-auto": ""}`} 
             disabled={loading} 
             onClick={handleUpload}
           >

@@ -316,7 +316,7 @@ function Information({
           <p className='font-semibold'>Customer Info</p>
           {customerFound === null ? (
             <button 
-              className="flex flex-row gap-2 items-center text-sm px-2 py-1 rounded-lg min-w-[133px] justify-center text-white bg-accent"
+              className="flex flex-row gap-2 items-center text-xs px-2 py-1 rounded-lg min-w-[133px] justify-center text-white bg-accent"
               onClick={handleCustomerSearch}
             >
               {loading ? (
@@ -333,7 +333,7 @@ function Information({
               ) : (
                 <div className="flex flex-row gap-2">
                   <IoMdSearch size={19} className='flex self-center' />
-                  <span>Find Customer</span>
+                  <span className="flex self-center">Find Customer</span>
                 </div>
               )}
             </button>
@@ -444,7 +444,7 @@ Information.propTypes = {
     first_name: PropTypes.string,
     last_name: PropTypes.string,
     country_code: PropTypes.number,
-    phone_number: PropTypes.string,
+    phone_number: PropTypes.number,
     email: PropTypes.string,
     call_notes: PropTypes.string,
   }).isRequired,

@@ -44,11 +44,11 @@ function KBTab () {
         ))}
         <div className="pt-2">
           <button 
-            className="text-sm bg-accent text-white px-3 py-1.5 rounded-lg flex flex-row gap-2"
+            className="text-xs bg-accent text-white px-3 py-1.5 rounded-lg flex flex-row gap-2"
             onClick={handleAddModalOpen}
           >
             <MdAddCircle size={20}/>
-            <span>Add Resource</span>
+            <span className="flex self-center">Add Resource</span>
           </button>
         </div>
       </div> 

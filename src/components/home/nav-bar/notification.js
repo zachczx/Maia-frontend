@@ -33,8 +33,8 @@ function CustomNotification () {
         <div className="absolute mt-[14px] right-0 bg-white rounded-md border border-gray-200 shadow-lg z-50 w-80 max-h-72 h-fit p-4 text-sm" ref={dropdownRef}>
           <p className="text-sm font-semibold">Notifications</p>
           <div>
-            <NotifMessage type="warning" content="200% increase in user reports regarding inaccessible NS enlistment details." timestamp="2024-06-25T14:56:47Z" />
-            <NotifMessage type="info" content="Slower website loading times on MINDEF NS portal." timestamp="2024-06-25T09:23:15Z" />
+            <NotifMessage type="warning" content="200% increase in user reports regarding inaccessible NS enlistment details." timestamp="2024-07-18T03:23:47Z" />
+            <NotifMessage type="info" content="Slower website loading times on MINDEF NS portal." timestamp="2024-07-18T03:24:15Z" />
           </div>
         </div>
       )}
