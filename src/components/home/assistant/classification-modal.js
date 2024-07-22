@@ -1,8 +1,8 @@
 import React, { useRef, useState, useEffect } from "react";
+import PropTypes from 'prop-types';
 import { TailSpin } from "react-loader-spinner";
 
 function ClassificationModal({
-  classificationResult,
   setClassificationModalOpen,
 }) {
   const modalRef = useRef();
@@ -77,7 +77,7 @@ function ClassificationModal({
             Rerun Analysis
           </button>
           <button 
-            className={`px-2 py-1.5 rounded-lg text-sm bg-accent text-white ${loading ? "mx-auto": ""}`} 
+            className={`px-2 py-1.5 rounded-lg text-xs bg-accent text-white ${loading ? "mx-auto": ""}`} 
             disabled={loading} 
             onClick={handleUpload}
           >
@@ -100,5 +100,9 @@ function ClassificationModal({
     </div>
   );
 }
+
+ClassificationModal.propTypes = {
+  setClassificationModalOpen: PropTypes.func.isRequired,
+};
 
 export default ClassificationModal;

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import EngagementRow from "@/components/home/engagement/record-row";
 import { MdAddCircle } from "react-icons/md";
 
@@ -8,6 +9,7 @@ function Record({
 }) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [data, setData] = useState([]);
+  const [rerender, setRerender] = useState(false);
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
@@ -29,15 +31,17 @@ function Record({
       .then(data => {
           if (data) {
             setData(Array.from(data));
+            setRerender(false);
           }
       })
       .catch((error) => {
           console.log(error);
+          setRerender(false);
       });
     }
 
     fetchData();
-  }, [])
+  }, [rerender])
 
 
   const headers = [
@@ -71,10 +75,10 @@ function Record({
             <div className="relative">
                 <button
                   onClick={toggleDropdown}
-                  className="text-sm bg-accent font-normal text-white px-3 py-1.5 rounded-lg flex flex-row gap-2 mb-2"
+                  className="text-xs bg-accent font-normal text-white px-3 py-1.5 rounded-lg flex flex-row gap-2 mb-2"
                 >
                   <MdAddCircle size={20} />
-                  <span>Add Record</span>
+                  <span className="flex self-center">Add Record</span>
                 </button>
                 {dropdownOpen && (
                   <div className="font-normal absolute right-0 mt-0.5 w-48 bg-white rounded-md shadow-lg z-20">
@@ -106,12 +110,22 @@ function Record({
         </thead>
         <tbody>
         {data.map((item, index) => (
-            <EngagementRow key={index} item={item} index={index}/>
+            <EngagementRow 
+              key={index}
+              item={item}
+              index={index}
+              setRerender={setRerender}
+            />
           ))}
         </tbody>
       </table>
     </div>
   );
 }
+
+Record.propTypes = {
+  setStep: PropTypes.func.isRequired,
+  setChannel: PropTypes.func.isRequired,
+};
 
 export default Record;

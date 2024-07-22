@@ -1,3 +1,5 @@
+import React from 'react';
+import PropTypes from 'prop-types';
 import { MdAddCircle } from "react-icons/md";
 
 function History ({
@@ -20,7 +22,7 @@ function History ({
       </div>
       ))}
       <div className="absolute my-3 mx-6 bottom-0">
-        <button className="flex flex-row gap-2 bg-accent text-white text-sm w-fit rounded-lg px-2 py-1.5">
+        <button className="flex flex-row gap-2 bg-accent text-white text-xs w-fit rounded-lg px-2 py-1.5">
           <MdAddCircle size={20}/>
           Add New Call
         </button>
@@ -28,5 +30,29 @@ function History ({
     </div>
   )
 }
+
+History.propTypes = {
+  callHistory: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      caller_info: PropTypes.shape({
+        name: PropTypes.string.isRequired,
+      }).isRequired,
+      conversation: PropTypes.shape({
+        timestamp: PropTypes.string.isRequired,
+      }).isRequired,
+    })
+  ).isRequired,
+  selectedCall: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    caller_info: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+    }).isRequired,
+    conversation: PropTypes.shape({
+      timestamp: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
+  setSelectedCall: PropTypes.func.isRequired,
+};
 
 export default History;

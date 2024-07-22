@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
+import PropTypes from 'prop-types';
 import { MdOutlineFileUpload } from "react-icons/md";
 import { TailSpin } from "react-loader-spinner";
 
@@ -102,11 +103,11 @@ function AddModal({
         ref={modalRef} 
         className="absolute bg-white rounded-md border border-gray-200 shadow-lg z-50 w-96 h-fit p-5 text-sm"
       >
-        <div className="pb-2">
+        <div className="pb-5">
           <p className="font-semibold text-base">Add Knowledge Base Resource</p>
           <p className="text-xs">Please fill in the information and upload a file</p>
         </div>
-        <div>
+        <div >
           {headers.map((header, index) => (
             <div className="mb-3" key={index}>
               <input
@@ -115,7 +116,7 @@ function AddModal({
                 value={formValues[header]}
                 onChange={handleInputChange}
                 placeholder={`${header}${compulsory.includes(header) ? '*' : ''}`}
-                className="border border-2 border-gray-200 w-full rounded-lg px-2 py-1 focus:outline-0"
+                className="border border-1 border-gray-400 text-xs w-full rounded px-2 py-1 focus:outline-0"
               />
             </div>
           ))}
@@ -124,7 +125,7 @@ function AddModal({
             <p className="text-xs mb-3">Supported file types: .xlsx</p>
             <label 
               htmlFor="file-upload" 
-              className="rounded-lg py-1 border border-2 border-gray-200 w-full flex flex-row gap-1 justify-center cursor-pointer"
+              className="rounded py-1 border border-1 text-xs items-center border-gray-400 w-full flex flex-row gap-1 justify-center cursor-pointer"
             >
               <MdOutlineFileUpload size={20} />
               {fileName ? fileName : "Choose File"}
@@ -141,13 +142,13 @@ function AddModal({
         </div>
         <div className="flex flex-rows gap-3 justify-between mt-8 mx-16">
           <button 
-            className={`${loading ? "hidden": "px-2 py-1.5 rounded-lg text-sm border border-2 border-accent"}`} 
+            className={`${loading ? "hidden": "px-2 py-1.5 rounded-lg text-xs border border-2 border-accent"}`} 
             onClick={handleCancel}
           >
             Cancel
           </button>
           <button 
-            className={`px-2 py-1.5 rounded-lg text-sm bg-accent text-white ${loading ? "mx-auto": ""}`} 
+            className={`px-2 py-1.5 rounded-lg text-xs bg-accent text-white ${loading ? "mx-auto": ""}`} 
             disabled={loading} 
             onClick={handleConfirm}
           >
@@ -170,5 +171,10 @@ function AddModal({
     </div>
   );
 }
+
+AddModal.propTypes = {
+  setAddModalOpen: PropTypes.func.isRequired,
+  setRerender: PropTypes.func.isRequired,
+};
 
 export default AddModal;

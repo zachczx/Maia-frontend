@@ -1,8 +1,11 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+
 function Tab ({
     selectedTab,
     setSelectedTab,
 }) {
-  const tabs = ["Engagement Record", "Knowledge Base", "Analytics Dashboard"];
+  const tabs = ["Engagement Record", "Knowledge Base"];
 
   const handleSelectTab = (clickedTab) => {
     setSelectedTab(clickedTab);
@@ -28,5 +31,10 @@ function Tab ({
     </div>
   )
 }
+
+Tab.propTypes = {
+  selectedTab: PropTypes.string.isRequired,
+  setSelectedTab: PropTypes.func.isRequired,
+};
 
 export default Tab;

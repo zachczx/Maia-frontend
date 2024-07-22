@@ -1,4 +1,5 @@
 import React, {useRef, useEffect, useState} from "react";
+import PropTypes from 'prop-types';
 import { TailSpin } from "react-loader-spinner";
 
 function EditModal({
@@ -87,7 +88,7 @@ function EditModal({
     <div className="inset-0 fixed w-screen h-screen z-50 flex justify-center items-center">
       <div ref={modalRef} className="absolute bg-white rounded-md border border-gray-200 shadow-lg z-50 w-96 h-fit p-5 text-sm">
         <div>
-          <div className="pb-2">
+          <div className="pb-5">
             <p className="font-semibold text-base">Edit Knowledge Base Resource</p>
             <p className="text-xs">Revise the details as needed</p>
           </div>
@@ -99,20 +100,20 @@ function EditModal({
                   id={header}
                   value={currValues[convertToDBName(header)]}
                   onChange={handleChange}
-                  className="border border-2 border-gray-200 col-span-2 rounded-lg px-2 py-1 focus:outline-0"
+                  className="border border-1 border-gray-400 col-span-2 rounded px-2 py-1 focus:outline-0"
                 />
             </div>
           ))}
         </div>
         <div className="flex flex-rows gap-3 justify-between mt-8 mx-16">
           <button 
-            className={`${loading ? "hidden": "px-2 py-1.5 rounded-lg text-sm border border-2 border-accent"}`} 
+            className={`${loading ? "hidden": "px-2 py-1.5 rounded-lg text-xs border border-2 border-accent"}`} 
             onClick={handleCancel}
           >
             Cancel
           </button>
           <button 
-            className={`px-2 py-1.5 rounded-lg text-sm bg-accent text-white ${loading ? "mx-auto": ""}`} 
+            className={`px-2 py-1.5 rounded-lg text-xs bg-accent text-white ${loading ? "mx-auto": ""}`} 
             disabled={loading} 
             onClick={handleConfirm}
           >
@@ -135,5 +136,18 @@ function EditModal({
     </div>
   )
 }
+
+EditModal.propTypes = {
+  setEditModalOpen: PropTypes.func.isRequired,
+  resource: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      category: PropTypes.string.isRequired,
+      sub_category: PropTypes.string.isRequired,
+      sub_subcategory: PropTypes.string.isRequired,
+      tag: PropTypes.string,
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  }).isRequired,
+  setRerender: PropTypes.func.isRequired,
+};
 
 export default EditModal;

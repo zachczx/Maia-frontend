@@ -1,4 +1,5 @@
 import React, { useEffect,useRef } from "react";
+import PropTypes from 'prop-types';
 import AgentMessage from "@/components/chatbot/agent-message";
 import ClientMessage from "@/components/chatbot/client-message";
 
@@ -31,5 +32,13 @@ function MessageHistory ({
     </div>
   )
 }
+
+MessageHistory.propTypes = {
+  messages: PropTypes.arrayOf(PropTypes.shape({
+    role: PropTypes.oneOf(['agent', 'client']).isRequired,
+    content: PropTypes.string.isRequired,
+  })).isRequired,
+  timestamp: PropTypes.string,
+};
 
 export default MessageHistory;

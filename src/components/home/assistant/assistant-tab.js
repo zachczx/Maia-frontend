@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import Transcript from "@/components/home/assistant/transcript"
 import TextInput from "@/components/home/assistant/text-input"
 import Information from "@/components/home/assistant/information"
@@ -22,5 +23,14 @@ function AssistantTab({
     </div>
   )
 }
+
+AssistantTab.propTypes = {
+  channel: PropTypes.string.isRequired,
+  setStep: PropTypes.func.isRequired,
+  information: PropTypes.object.isRequired,
+  setInformation: PropTypes.func.isRequired,
+  setContent: PropTypes.func.isRequired,
+};
+
 
 export default AssistantTab;

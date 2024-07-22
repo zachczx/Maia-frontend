@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from 'prop-types';
 import { TailSpin } from "react-loader-spinner";
 import { AiOutlineBarChart } from 'react-icons/ai';
 
@@ -41,9 +42,9 @@ function TextInput({
                 wrapperClass=""
               />
             ) : (
-              <div className="flex flex-row gap-2">
+              <div className="flex flex-row gap-2 text-xs">
                 <AiOutlineBarChart size={20} />
-                <span>Run Analysis</span>
+                <span className="flex self-center">Analyse Case</span>
               </div>
             )}
           </button>
@@ -51,7 +52,7 @@ function TextInput({
       </div>
       <div className="px-8 pt-4 h-full">
       <textarea
-          className="w-full h-[85%] border border-gray-300 rounded-lg p-2 focus:outline-0 text-sm"
+          className="w-full h-[85%] border border-gray-200 rounded p-2 focus:outline-0 text-xs"
           placeholder={`Enter ${channel} content here...`}
           value={textValue} // Bind value to state
           onChange={handleTextChange} // Handle change event
@@ -60,5 +61,11 @@ function TextInput({
     </div>
   )
 }
+
+TextInput.propTypes = {
+    channel: PropTypes.string.isRequired,
+    setStep: PropTypes.func.isRequired,
+    setContent: PropTypes.func.isRequired,
+  };
 
 export default TextInput;
