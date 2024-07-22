@@ -1,6 +1,6 @@
 import React, { useState} from "react";
 import PropTypes from 'prop-types';
-import ContextModal from "./ContextModal";
+import ContextModal from "@/components/chatbot/context-modal";
 
 function AgentMessage({ content }) {
   const [context, setContext] = useState("");

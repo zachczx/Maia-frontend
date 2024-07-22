@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from 'prop-types';
 import Transcript from "@/components/home/assistant/transcript"
 import TextInput from "@/components/home/assistant/text-input"
-import Information from "@/components/home/assistant/information"
 
 function AssistantTab({
   channel,
@@ -19,7 +18,7 @@ function AssistantTab({
       ) : (
         <TextInput setContent={setContent} setStep={setStep} channel={channel} />
       )}
-      <Information information={information} setInformation={setInformation} />
+      {/* <Information information={information} setInformation={setInformation} /> */}
     </div>
   )
 }

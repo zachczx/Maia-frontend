@@ -5,7 +5,7 @@ function Tab ({
     selectedTab,
     setSelectedTab,
 }) {
-  const tabs = ["Engagement Record", "Knowledge Base"];
+  const tabs = ["Email / Web Chat", "Call"];
 
   const handleSelectTab = (clickedTab) => {
     setSelectedTab(clickedTab);

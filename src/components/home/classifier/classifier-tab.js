@@ -2,7 +2,8 @@ import React, { useCallback, useState } from "react";
 import PropTypes from 'prop-types';
 import Config from "@/components/home/classifier/config";
 import Case from "@/components/home/classifier/case";
-import Analysis from "./analysis";
+import Analysis from "@/components/home/classifier/analysis";
+import { useAuth } from "../../../auth/auth-context";
 
 function ClassifierTab({
   content,
@@ -11,6 +12,7 @@ function ClassifierTab({
   channel,
   setStep,
 }) {
+  const { fetchWithAuth } = useAuth();
   const [loading, setLoading] = useState(false);
   const [requestData, setRequestData] = useState({
     case_information: content,
@@ -42,7 +44,7 @@ function ClassifierTab({
 
     const json = filteredData;
 
-    return fetch(url, {
+    return fetchWithAuth(url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

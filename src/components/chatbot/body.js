@@ -1,15 +1,10 @@
 import React, {useEffect, useState} from "react";
 import InputBar from "@/components/chatbot/input-bar";
 import MessageHistory from "@/components/chatbot/message-history";
-// import { useSelector, useDispatch } from 'react-redux';
-// import { addMessage, addTimeStamp } from '../../features/chatHistorySlice'; 
 
 function Body () {
   const [messages, setMessages] = useState([]);
   const [timestamp, setTimestamp] = useState();
-  // const chatMessages = useSelector(state => state.chatHistory.messages);
-  // const timestampHistory = useSelector(state => state.chatHistory.timestamp);
-  // const dispatch = useDispatch();
 
   function getTimestamp() {
     const date = new Date();
@@ -23,30 +18,6 @@ function Body () {
 
     return `${day} ${month}, ${hours}:${minutes}`;
   }
-
-  // useEffect(() => {
-  //   console.log('Messages have changed:', chatMessages);
-  // }, [chatMessages]);
-
-  // useEffect(() => {
-  //   // console.log('Full state check:', chatMessages);
-  //   if (chatMessages.length === 0) {
-  //     const defaultFirstMessage = {role: "agent", content: "Hello! How can I assist you with your current task?"};
-  //     const tempTimestamp = getTimestamp();
-
-  //     // dispatch(addMessage(defaultFirstMessage));
-  //     // dispatch(addTimeStamp(tempTimestamp));
-
-  //     setTimeout(() => {
-  //       setMessages([defaultFirstMessage]);
-  //       setTimestamp(tempTimestamp);
-  //       console.log('Updated state after delay:', chatMessages);
-  //     }, 2000);
-  //   } else {
-  //     setMessages(chatMessages); 
-  //     setTimestamp(timestampHistory);
-  //   }
-  // }, [dispatch, chatMessages, timestampHistory])
 
   useEffect(() => {
     const defaultFirstMessage = [{role: "agent", content: "Hello! How can I assist you with your current task?"}];
