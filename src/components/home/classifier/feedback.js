@@ -3,27 +3,34 @@
 import React, {useState} from "react";
 import { TailSpin } from "react-loader-spinner";
 import PropTypes from 'prop-types';
+import { useAuth } from "../../../auth/auth-context";
 
 function Feedback ({
   data,
   setData,
 }) {
+  const {fetchWithAuth} = useAuth();
   const [feedback, setFeedback] = useState("");
   const [loading, setLoading] = useState(false);
+  const [hasError, setHasError] = useState(false);
 
   const handleFeedbackChange = (event) => {
     setFeedback(event.target.value);
   };
 
   const fetchTextData = () => {
+
+    if (feedback.trim() === "") {
+      setHasError(true);
+      return;
+    }
+
     setLoading(true);
     const url = 'http://127.0.0.1:8000/api/query/text/';
 
-    console.log(data)
-
     const json = { case_information: feedback, history: data.log }
 
-    return fetch(url, {
+    return fetchWithAuth(url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -50,15 +57,15 @@ function Feedback ({
       <p className="font-semibold mb-4">Feedback</p>
       <input
         type='text'
-        className="border border-1 border-gray-500 rounded w-full h-fit focus:outline-0 p-2 text-xs"
+        className={`border rounded w-full h-fit focus:outline-0 p-2 text-xs ${hasError ? 'border-red-500 border-1.5' : 'border-gray-500'}`}
         placeholder="Enter feedback for a more accurate analysis"
         value={feedback}
         onChange={handleFeedbackChange}
       />
 
-<div className="flex justify-center mt-4">
+      <div className="flex justify-center mt-4">
         <button
-          className="bg-accent p-2 text-xs text-white rounded h-[36px] w-[132px] flex justify-center items-center"
+          className="bg-accent p-2 text-xs text-white rounded h-[30px] w-[132px] flex justify-center items-center"
           disabled={loading}
           onClick={fetchTextData}
         >

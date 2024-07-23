@@ -39,7 +39,7 @@ function OutputFormat ({
             {formats.map((format, index) => (
               <div 
                 key={index}
-                className={`border border-1 border-gray-500 rounded py-1 px-2 text-xs cursor-pointer ${format==selectedFormat ? "border-0 bg-accent text-white" : ""}`}
+                className={`border border-1 border-gray-500 rounded px-2 py-1.5 h-[28px] text-xs cursor-pointer ${format === selectedFormat ? "border-1 bg-blue-50" : ""}`}
                 onClick={()=> handleFormatChange(format)}
               >
                 {format}

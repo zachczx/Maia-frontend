@@ -1,21 +1,17 @@
-import React, { useCallback, useState } from "react";
+import React, { useState, useCallback } from "react";
 import PropTypes from 'prop-types';
-import Config from "@/components/home/classifier/config";
-import Case from "@/components/home/classifier/case";
-import Analysis from "@/components/home/classifier/analysis";
+import TextTab from "@/components/home/text/text-tab";
+import CallTab from "@/components/home/call/call-tab";
 import { useAuth } from "../../../auth/auth-context";
 
-function ClassifierTab({
-  content,
-  information,
-  setInformation,
+function TabContent({
   channel,
-  setStep,
 }) {
+
   const { fetchWithAuth } = useAuth();
   const [loading, setLoading] = useState(false);
   const [requestData, setRequestData] = useState({
-    case_information: content,
+    case_information: "",
     response_format: "",
     response_template: "",
     past_responses: "",
@@ -36,6 +32,8 @@ function ClassifierTab({
   });
 
   const fetchTextData = useCallback(() => {
+    setLoading(true);
+  
     const url = 'http://127.0.0.1:8000/api/query/text/';
 
     const filteredData = Object.fromEntries(
@@ -66,54 +64,40 @@ function ClassifierTab({
       setLoading(false);
       return "An error has occurred";
     });
-  }, [requestData, setData, setFetchedData]);
-
-  const handleClick = useCallback(() => {
-    setLoading(true);
-    if (requestData.case_information !== "" ) {
-      fetchTextData();
-    }
-  }, [fetchTextData, requestData]);
-
+  }, [requestData, setData, setFetchedData, fetchWithAuth]);
+  
   return (
-    <div className="w-full grid grid-cols-3 overflow-y-auto" style={{ height: 'calc(100vh - 121px)' }}>
-      {!fetchedData && (
-        <Config requestData={requestData} setRequestData={setRequestData} />
-      )}
-      <Case
-        fetchedData={fetchedData}
-        query={content} 
-        handleClick={handleClick}
-        loading={loading}
-      />
-      {fetchedData && (
-        <Analysis
+    <div className="w-full grid overflow-y-auto" style={{ height: 'calc(100vh - 121px)' }}>
+      {channel === "Call" ? (
+        <CallTab 
           fetchedData={fetchedData}
+          requestData={requestData}
+          setRequestData={setRequestData}
+          fetchTextData={fetchTextData}
           data={data}
           setData={setData}
-          information={information}
-          setInformation={setInformation}
-          content={content}
-          setStep={setStep}
+          loading={loading}
+          channel={channel}
+        />
+      ) : (
+        <TextTab 
+          fetchedData={fetchedData}
+          requestData={requestData}
+          setRequestData={setRequestData}
+          fetchTextData={fetchTextData}
+          data={data}
+          setData={setData}
+          loading={loading}
           channel={channel}
         />
       )}
     </div>
-  );
+  )
 }
 
-ClassifierTab.propTypes = {
-  content: PropTypes.string,
-  information: PropTypes.shape({
-    first_name: PropTypes.string,
-    last_name: PropTypes.string,
-    phone_number: PropTypes.string,
-    email: PropTypes.string,
-    call_notes: PropTypes.string,
-  }),
-  setInformation: PropTypes.func,
-  channel: PropTypes.string,
-  setStep: PropTypes.func,
+TabContent.propTypes = {
+  channel: PropTypes.string.isRequired,
 };
 
-export default ClassifierTab;
+
+export default TabContent;

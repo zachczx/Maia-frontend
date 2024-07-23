@@ -1,18 +1,16 @@
 import React, { useState, useRef, useEffect } from "react";
-import PropTypes from 'prop-types';
 import { SlCallIn, SlCallEnd } from "react-icons/sl";
 import { HiOutlineLightBulb } from "react-icons/hi";
-import { AiOutlineBarChart } from 'react-icons/ai';
-import { TailSpin } from "react-loader-spinner";
-import TranscriptSegment from "@/components/home/assistant/transcript-segment";
+import TranscriptSegment from "@/components/home/call/transcript-segment";
+import PropTypes from 'prop-types';
 
 function Transcript({
-  setContent,
-  setStep,
+  fetchedData,
+  setRequestData,
+  requestData,
 }) {
   const [recording, setRecording] = useState(false);
   const [recordingEnd, setRecordingEnd] = useState(false);
-  const [loading, setLoading] = useState(false);
   const [transcript, setTranscript] = useState([]);
   
   const socketRef = useRef(null);
@@ -113,7 +111,10 @@ function Transcript({
     setRecording(false);
     setRecordingEnd(true);
 
-    setContent(formatTranscript(transcript));
+    setRequestData({
+      ...requestData,
+      case_information: formatTranscript(transcript),
+    });
   };
 
   const fetchSuggestion = () => {
@@ -126,11 +127,6 @@ function Transcript({
     }
   }
 
-  const fetchClassification = () => {
-    setLoading(true);
-    setStep(3);
-  }
-
 
   useEffect(() => {
     if (transcriptContainerRef.current) {
@@ -139,19 +135,19 @@ function Transcript({
   }, [transcript]);
 
   return (
-    <div className="pt-4 col-span-3 h-full">
+    <div className={`pt-4 h-full border-r border-gray-200 ${fetchedData ? "col-span-1" : "col-span-2" }`}>
       <div className="px-8 border-b border-gray-200 pb-2 flex flex-row justify-between">
-        <div className="font-semibold">Transcript</div>
+        <div className="font-semibold my-auto">Transcript</div>
         <div className={`flex flex-row gap-3 ${recordingEnd ? 'hidden': ''}`}>
           <button 
-            className={`flex flex-row gap-2 items-center bg-blue-50 px-2 py-1 rounded-lg ${recording ? '' :'hidden'}`}
+            className={`flex flex-row gap-2 items-center bg-blue-50 h-[30px] px-2 py-1 rounded ${recording ? '' :'hidden'}`}
             onClick={fetchSuggestion}
           >
             <HiOutlineLightBulb size={18} />
             <span className="text-xs">Request Suggestion</span>
           </button>
           <button
-            className={`flex flex-row gap-2 items-center text-white px-2 py-1 rounded-lg ${
+            className={`flex flex-row gap-2 items-center h-[30px] text-white px-2 py-1 rounded ${
               recording ? 'bg-red-600' : 'bg-call-green'
             }`}
             onClick={recording ? stopRecording : startRecording}
@@ -160,30 +156,6 @@ function Transcript({
             <span className="text-xs">
               {recording ? 'End Call' : 'Start Call'}
             </span>
-          </button>
-        </div>
-        <div className={` ${recordingEnd ? '':'hidden'}`}>
-          <button 
-            className="flex flex-row gap-2 items-center text-xs text-white bg-accent px-2 py-1 rounded-lg" 
-            onClick={fetchClassification}
-          >
-            {loading ? (
-              <TailSpin
-                visible={true}
-                height="20"
-                width="20"
-                color="#fff"
-                ariaLabel="tail-spin-loading"
-                radius="1"
-                wrapperStyle={{}}
-                wrapperClass=""
-              />
-            ) : (
-              <div className="flex flex-row gap-2 text-xs">
-                <AiOutlineBarChart size={20} />
-                <span className="text-xs">Analyse Case</span>
-              </div>
-            )}
           </button>
         </div>
       </div>
@@ -201,8 +173,15 @@ function Transcript({
 }
 
 Transcript.propTypes = {
-  setContent: PropTypes.func.isRequired,
-  setStep: PropTypes.func.isRequired,
+  fetchedData: PropTypes.bool.isRequired,
+  setRequestData: PropTypes.func.isRequired,
+  requestData: PropTypes.shape({
+    case_information: PropTypes.string,
+    response_format: PropTypes.string,
+    response_template: PropTypes.string,
+    past_responses: PropTypes.string,
+    extra_information: PropTypes.string,
+  }).isRequired,
 };
 
 export default Transcript;

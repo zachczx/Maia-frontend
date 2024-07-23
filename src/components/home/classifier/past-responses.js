@@ -15,7 +15,7 @@ function PastResponse ({
   };
 
   const handleAddResponse = () => {
-    if (text != "") {
+    if (text !== "") {
       setResponses([text, ...responses]);
       setText("");
     }
@@ -28,7 +28,7 @@ function PastResponse ({
 
   const handleRemoveResponse = (response) => {
     console.log(responses)
-    if (responses.length == 1){
+    if (responses.length === 1){
         setResponses([])
         setRequestData({
             ...requestData,
@@ -56,21 +56,21 @@ function PastResponse ({
       </div>
       <div className="flex justify-end">
         <div 
-          className="flex flex-row gap-1 cursor-pointer text-white bg-accent w-fit rounded py-1 px-2"
+          className="flex flex-row gap-1 cursor-pointer text-black h-[30px] bg-blue-50 w-fit rounded py-1 px-2"
           onClick={() => handleAddResponse()}
         >
-          <IoIosAddCircleOutline size={20} />
+          <IoIosAddCircleOutline size={20} className="flex self-center"/>
           <span className="text-xs flex items-center">Add Past Response</span>
         </div>
       </div>
 
-      <div className={`flex flex-col gap-1 mt-1 ${responses.length !=0 ? "": "hidden"}`}>
+      <div className={`flex flex-col gap-2 mt-1 ${responses.length !== 0 ? "": "hidden"}`}>
         {responses.map((response, index) => (
           <div 
             key={index} 
             className="text-xs rounded bg-blue-50 p-2 w-full flex flex-row justify-between gap-5"
           >
-            <div>
+            <div className="whitespace-pre-wrap">
               {response}
             </div>
             <div 

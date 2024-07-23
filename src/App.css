@@ -36,3 +36,7 @@
     transform: rotate(360deg);
   }
 }
+
+ql-toolbar.ql-snow { border: none !important;}
+
+

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Suggestion from "@/components/home/assistant/suggestion";
-import Speech from '@/components/home/assistant/speech';
+import Suggestion from "@/components/home/call/suggestion";
+import Speech from '@/components/home/call/speech';
 
 function TranscriptSegment({ segment }) {
   if (segment.role === "suggestion") {

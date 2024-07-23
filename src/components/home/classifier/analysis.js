@@ -7,11 +7,6 @@ function Analysis({
   fetchedData,
   data,
   setData,
-  information,
-  setInformation,
-  content,
-  setStep,
-  channel,
 }) {
 
   return (
@@ -19,16 +14,14 @@ function Analysis({
       <Result
         data={data} 
         setData={setData}
-        information={information} 
-        setInformation={setInformation} 
-        content={content}
-        setStep={setStep}
-        channel={channel}
+        fetchedData={fetchedData}
       />
-      <Feedback 
-        data={data} 
-        setData={setData} 
-      />
+      {fetchedData && 
+        <Feedback 
+          data={data} 
+          setData={setData} 
+        />
+      }
     </div>
   )
 }
@@ -39,17 +32,4 @@ Analysis.propTypes = {
   fetchedData: PropTypes.bool.isRequired,
   data: PropTypes.object.isRequired,
   setData: PropTypes.func.isRequired,
-  information: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    first_name: PropTypes.string.isRequired,
-    last_name: PropTypes.string.isRequired,
-    country_code: PropTypes.number.isRequired,
-    phone_number: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired,
-    call_notes: PropTypes.string,
-  }).isRequired,
-  setInformation: PropTypes.func.isRequired,
-  content: PropTypes.string.isRequired,
-  setStep: PropTypes.func.isRequired,
-  channel: PropTypes.string.isRequired,
 };
