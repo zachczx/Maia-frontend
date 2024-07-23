@@ -51,7 +51,7 @@ function OutputFormat ({
         <div className="flex flex-col gap-3">
           <p className="text-xs">Preferred response template:</p>
           <textarea
-            className="border border-1 border-gray-400 rounded w-full focus:outline-0 p-2 text-xs h-[80px]"
+            className="border border-1 border-gray-400 rounded w-full focus:outline-0 p-2 text-xs h-[80px] whitespace-pre-wrap"
             onChange={handleTemplateChange}
             value={template}
           />

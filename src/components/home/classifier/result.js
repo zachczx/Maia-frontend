@@ -17,6 +17,7 @@ function Result ({
     "Sub Category",
     "Sub Subcategory",
     "Sentiment",
+    "Resolution Notes"
   ];
 
   const convertToJsonName = (str) => str.replace(" ", "_").toLowerCase();

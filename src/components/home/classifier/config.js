@@ -23,7 +23,7 @@ function Config({
     <div className="border-r border-gray-200 col-span-1 px-8 pb-4 overflow-y-auto" style={{ height: 'calc(100vh - 121px)' }}>
       <div className="flex flex-row justify-between pt-6 ">
         <p className="font-semibold mb-1  self-center">Configuration <span className="text-xs font-normal italic text-gray-400">*optional</span></p>
-        {(channel == "Call" && requestData.case_information !=="")&& (
+        {(channel === "Call" && requestData.case_information !=="")&& (
           <div className="flex justify-center self-center">
             <button
               className="bg-accent px-2 py-1 text-white rounded text-xs h-[30px] w-[120px] flex justify-center items-center"

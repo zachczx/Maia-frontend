@@ -8,9 +8,20 @@ const RichTextEditor = ({
   setData,
 }) => {
 
-  const handleChange = (content, delta, source, editor) => {
-    setData({ ...data, suggested_reply: editor.getHTML() });
-  };
+    const getName = () => {
+      const firstName = sessionStorage.getItem("first_name");
+      const lastName = sessionStorage.getItem("last_name");
+      return `${firstName} ${lastName}`;
+    };
+
+    const handleChange = (content, delta, source, editor) => {
+      let updatedContent = editor.getHTML();
+      const name = getName();
+
+      updatedContent = updatedContent.replace(/\[CSO's Name\]/g, name);
+    
+      setData({ ...data, suggested_reply: updatedContent });
+    };
 
   return (
     <div className='relative'>
