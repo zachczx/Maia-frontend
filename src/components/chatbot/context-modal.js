@@ -1,4 +1,4 @@
-import React, {useRef, useEffect} from "react";
+import React, { useRef, useEffect, useState } from "react";
 import PropTypes from 'prop-types';
 
 function ContextModal({
@@ -6,6 +6,7 @@ function ContextModal({
   content,
 }){
   const modalRef = useRef();
+  const [QnA, setQnA] = useState(["",""]);
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -24,18 +25,32 @@ function ContextModal({
     setContextModalOpen(false);
   }
 
-  const formattedContent = () => {
-    const parts = content.split('\n\n\n\n');
-    const question = parts[0] ? `Question:\n${parts[0]}` : '';
-    const answer = parts[1] ? `Answer:\n${parts[1]}` : '';
-    return `${question}\n\n${answer}`;
-  };
+  useEffect(() => {
+    const formattedContent = () => {
+      const firstDoubleNewlineIndex = content.indexOf('\n\n');
+      if (firstDoubleNewlineIndex === -1) {
+        return content;
+      }
+
+      const question = content.substring(0, firstDoubleNewlineIndex).trim();
+      const answer = content.substring(firstDoubleNewlineIndex + 2).trim();
+      setQnA([question, answer]);
+      return;
+    };
+    formattedContent(content)
+  }, [content])
 
   return (
     <div className="inset-0 fixed w-screen h-screen z-50 flex justify-center items-center">
+      <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm"></div>
       <div ref={modalRef} className="absolute bg-white rounded-md border border-gray-200 shadow-lg z-50 w-[40%] max-h-[80%] overflow-y-auto p-5 text-xs">
         <div className="mb-5 whitespace-pre-wrap">
-          {formattedContent(content)}
+          <div className="mb-5 text-sm font-semibold">
+            {QnA[0]}
+          </div>
+          <div className="bg-blue-50 rounded p-3">
+            {QnA[1]}
+          </div>
         </div>
         <div className="flex justify-center">
           <button 

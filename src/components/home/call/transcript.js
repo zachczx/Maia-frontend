@@ -32,8 +32,9 @@ function Transcript({
       if (permissions.state !== 'granted') {
         throw new Error('Microphone permission not granted');
       }
-
-      const url = "ws://localhost:8000/ws/socket-server/";
+      const apiUrl = process.env.REACT_APP_API_URL;
+      const url = `ws://${apiUrl}/ws/socket-server/`;
+      console.log(url)
       const socket = new WebSocket(url);
       socketRef.current = socket;
 

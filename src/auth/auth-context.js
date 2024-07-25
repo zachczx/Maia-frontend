@@ -14,7 +14,8 @@ export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
 
   const login = async (username, password) => {
-    const response = await fetch('http://localhost:8000/api/auth/login/', {
+    const apiUrl = process.env.REACT_APP_API_URL;
+    const response = await fetch(`http://${apiUrl}/api/auth/login/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -64,8 +65,9 @@ export const AuthProvider = ({ children }) => {
   };
 
   const refreshAccessToken = async () => {
+    const apiUrl = process.env.REACT_APP_API_URL;
     const refreshToken = authTokens?.refresh;
-    const response = await fetch('http://localhost:8000/api/auth/token/refresh/', {
+    const response = await fetch(`http://${apiUrl}/api/auth/token/refresh/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

@@ -33,12 +33,13 @@ function TabContent({
 
   const fetchTextData = useCallback(() => {
     setLoading(true);
-  
-    const url = 'http://127.0.0.1:8000/api/query/text/';
+    const apiUrl = process.env.REACT_APP_API_URL;
+    const url = `http://${apiUrl}/api/query/text/`;
 
     const filteredData = Object.fromEntries(
-      Object.entries(requestData).filter(([key, value]) => value !== null && value !== "")
+      Object.entries(requestData).filter(([, value]) => value !== null && value !== "")
     );
+    
 
     const json = filteredData;
 

@@ -17,7 +17,7 @@ function Case({
     setText(event.target.value);
     setRequestData({
         ...requestData,
-        case_information: text,
+        case_information: event.target.value,
       });
   };
 

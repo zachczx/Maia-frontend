@@ -1,8 +1,10 @@
 import React, { useState} from "react";
 import PropTypes from 'prop-types';
 import ContextModal from "@/components/chatbot/context-modal";
+import { useAuth } from "../../auth/auth-context";
 
 function AgentMessage({ content }) {
+  const { fetchWithAuth } = useAuth();
   const [context, setContext] = useState("");
   const [contextModalOpen, setContextModalOpen] = useState(false);
 
@@ -16,7 +18,8 @@ function AgentMessage({ content }) {
       result.push(text.substring(lastIndex, match.index));
 
       const isBackendLink = match[2].startsWith('http://BACKEND_LINK/');
-      const processedLink = isBackendLink ? match[2].replace('http://BACKEND_LINK', 'http://127.0.0.1:8000/api/kbembedding') : match[2];
+      const apiUrl = process.env.REACT_APP_API_URL;
+      const processedLink = isBackendLink ? match[2].replace('BACKEND_LINK', `${apiUrl}/api/kbembedding`) : match[2];
 
       if (isBackendLink) {
         result.push(
@@ -58,7 +61,7 @@ function AgentMessage({ content }) {
       url += '/';
     }
 
-    return fetch(url, {
+    return fetchWithAuth(url, {
       method: 'GET',
     })
     .then(response => response.json())

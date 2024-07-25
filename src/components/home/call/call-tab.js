@@ -19,6 +19,7 @@ function CallTab ({
       <Transcript 
         fetchedData={fetchedData}
         setRequestData={setRequestData}
+        requestData={requestData} 
       />
       {!fetchedData && (
         <Config 

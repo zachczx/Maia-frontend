@@ -12,6 +12,7 @@ function TextTab({
   data,
   setData,
   loading,
+  channel,
 }) {
 
   return (
@@ -20,6 +21,9 @@ function TextTab({
         <Config 
           requestData={requestData} 
           setRequestData={setRequestData} 
+          channel={channel}
+          loading={loading}
+          handleClick={fetchTextData}
         />
       )}
       <Case
@@ -65,6 +69,7 @@ TextTab.propTypes = {
   }).isRequired,
   setData: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
+  channel:PropTypes.string.isRequired,
 };
 
 export default TextTab;

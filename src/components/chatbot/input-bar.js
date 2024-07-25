@@ -1,11 +1,15 @@
 import React, { useEffect, useState} from "react";
 import PropTypes from 'prop-types';
 import { IoMdSend } from "react-icons/io";
+import { useAuth } from "../../auth/auth-context";
 
 function InputBar ({
   messages,
   setMessages,
 }) {
+  // const apiUrl = process.env.REACT_APP_API_URL;
+
+  const {fetchWithAuth} = useAuth();
   const [inputValue, setInputValue] = useState("");
   const [isFetchingData, setIsFetchingData] = useState(false);
 
@@ -16,12 +20,14 @@ function InputBar ({
   };
 
   useEffect(() => {
+    const apiUrl = process.env.REACT_APP_API_URL;
+
     const fetchData = () => {
-      const url = 'http://127.0.0.1:8000/api/chat/';
+      const url = `http://${apiUrl}/api/chat/`;
       const data = {
         chat_history: messages
       };
-      return fetch(url, {
+      return fetchWithAuth(url, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -41,10 +47,8 @@ function InputBar ({
     }
 
     const getChatResponse = async () => {
-      //get response
       const response = await fetchData()
 
-      //append response
       const message = {content: response, role: "agent"}
       setMessages(prevMessages => [
         ...prevMessages,
@@ -57,7 +61,7 @@ function InputBar ({
     if (messages.length%2 === 0 && messages.length !== 0){
       getChatResponse()
     }
-  }, [messages, setMessages])
+  }, [messages, fetchWithAuth, setMessages])
   
 
   const handleQuerySubmit = () => {
@@ -74,7 +78,7 @@ function InputBar ({
     <div className="border-t border-grey-500 h-[20%] flex flex-row justify-between">
       <input 
         type="text" 
-        className="border-0 focus:outline-0 py-2 px-3 text-xs items-center w-full rounded-lg" 
+        className="border-0 focus:outline-0 py-2 px-3 text-xs items-center w-full rounded-lg bg-white" 
         onKeyDown={handleKeyDown}
         onChange={(e) => setInputValue(e.target.value)}
         placeholder="Type your question here"
